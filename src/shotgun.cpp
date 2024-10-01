@@ -2,7 +2,7 @@
 
 #include "random.h"
 
-void Shotgun::pumping(){
+void Shotgun::pumping() {
     delete magazine[0];
     magazine[0] = nullptr;
     for(int i = 0; i < magazineSize - 1; i++){
@@ -13,7 +13,7 @@ void Shotgun::pumping(){
     }
 }
 
-void Shotgun::loading(){
+void Shotgun::loading() {
     int shellRange = rGetNum(2, 8);
     int liveLeft = shellRange / 2;
     int blankLeft = liveLeft;
