@@ -7,7 +7,7 @@ enum ShellType{
 };
 
 enum ItemType{
-
+EMPTY
 };
 
 #endif
