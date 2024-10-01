@@ -6,15 +6,11 @@
 class Player;
 
 class Item {
+protected:
     ItemType itemType;
 public:
     Item();
-    virtual void use(Player subject, Player object);
+    virtual void use(Player &subjectPlayer, Player &objectPlayer);
 };
-
-class Pill : Item {
-    void use (Player subject, Player object) override;
-};
-
 
 #endif

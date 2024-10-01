@@ -3,12 +3,9 @@
 #include "player.h"
 
 
-void Item::use(Player subject, Player object) {}
+void Item::use(Player &subjectPlayer, Player &objectPlayer) {}
 
 Item::Item() {
     itemType = EMPTY;
 }
 
-void Pill::use(Player subject, Player object) {
-
-}
