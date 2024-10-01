@@ -2,7 +2,7 @@
 #define BUCKSHOT_ROULETTE__ITEM_H
 
 
-class item {
+class Item {
 
 };
 
