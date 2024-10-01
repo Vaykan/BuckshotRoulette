@@ -1,4 +1,4 @@
-#include "item.h"
+#include "items/item.h"
 #include "random.h"
 #include "player.h"
 

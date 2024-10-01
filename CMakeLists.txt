@@ -4,7 +4,7 @@ project(Buckshot_Roulette)
 set(CMAKE_CXX_STANDARD 23)
 
 add_executable(Buckshot_Roulette
-        src/item.cpp
+        src/items/item.cpp
         src/main.cpp
         src/random.cpp
         src/shell.cpp

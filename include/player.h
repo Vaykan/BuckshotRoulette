@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "item.h"
+#include "items/item.h"
 
 
 class Player {

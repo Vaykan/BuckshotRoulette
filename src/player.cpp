@@ -1,5 +1,5 @@
 #include "player.h"
-#include "item.h"
+#include "items/item.h"
 
 void Player::setHitPoint(int hitPoint) {
     this->hitPoint = hitPoint;
