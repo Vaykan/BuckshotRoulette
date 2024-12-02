@@ -12,6 +12,10 @@ add_executable(Buckshot_Roulette
         src/player.cpp
         src/items/pill.cpp
         include/items/pill.h
+        src/items/cigarette.cpp
+        include/items/cigarette.h
+        gameTable.cpp
+        gameTable.h
 )
 target_include_directories(Buckshot_Roulette PUBLIC include)
 

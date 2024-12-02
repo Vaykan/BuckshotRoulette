@@ -7,8 +7,9 @@ enum ShellType{
 };
 
 enum ItemType{
-EMPTY,
-PILL
+    EMPTY,
+    PILL,
+    CIGARETTE
 };
 
 #endif

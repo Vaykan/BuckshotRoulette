@@ -1,11 +1,7 @@
 #include "items/item.h"
-#include "random.h"
-#include "player.h"
 
-
-void Item::use(Player &subjectPlayer, Player &objectPlayer) {}
+void Item::use(Player &subjectPlayer, Player &objectPlayer, Shotgun &shotgun) {}
 
 Item::Item() {
     itemType = EMPTY;
 }
-

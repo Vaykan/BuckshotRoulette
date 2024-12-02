@@ -2,6 +2,9 @@
 #define BUCKSHOT_ROULETTE__ITEM_H
 
 #include "enum.h"
+#include "shotgun.h"
+#include "player.h"
+#include "random.h"
 
 class Player;
 
@@ -10,7 +13,11 @@ protected:
     ItemType itemType;
 public:
     Item();
-    virtual void use(Player &subjectPlayer, Player &objectPlayer);
+    virtual void healSubject();
+    virtual void damageObject();
+    
 };
+
+
 
 #endif

@@ -4,6 +4,6 @@ Cigarette::Cigarette() {
     itemType = CIGARETTE;
 }
 
-void Cigarette::use(Player &subjectPlayer, Player &objectPlayer) {
+void Cigarette::use(Player &subjectPlayer, Player &objectPlayer, Shotgun &shotgun) {
 
 }
