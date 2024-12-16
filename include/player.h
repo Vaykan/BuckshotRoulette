@@ -10,9 +10,12 @@ class Item;
 
 
 class Player {
+private:
     int hitPoint = 0;
     int maxHitPoint = 0;
     std::vector<Item> item;
+    Shotgun *shotgun;
+
 public:
     void setHitPoint(int hitPoint);
     int getHitPoint() const;
