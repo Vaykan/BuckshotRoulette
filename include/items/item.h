@@ -9,12 +9,17 @@
 class Player;
 
 class Item {
+private:
+    Player* owner;
+    Player* target;
 protected:
     ItemType itemType;
 public:
-    Item();
-    virtual void healSubject();
-    virtual void damageObject();
+    Item(Player& owner, Player& target);
+    virtual void use();
+    virtual void setTarget(Player& target);
+    virtual void setOwner(Player& owner);
+
     
 };
 
