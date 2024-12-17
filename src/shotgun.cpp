@@ -38,3 +38,7 @@ void Shotgun::loading() {
         }
     }
 }
+
+bool Shotgun::isEmpty() {
+    return false;
+}

@@ -14,7 +14,8 @@ private:
     int hitPoint = 0;
     int maxHitPoint = 0;
     std::vector<Item> item;
-    Shotgun *shotgun;
+    Shotgun* shotgun;
+    Player* target;
 
 public:
     void setHitPoint(int hitPoint);
@@ -22,9 +23,13 @@ public:
     void changeHitPoint(int delta);
 
     void setMaxHitPoint(int maxHitPoint);
+    void setArrayItemSize(int size);
+    void setTarget(Player& target);
+    void setShotgun(Shotgun& shotgun);
+
     int getMaxHitPoint() const;
 
-    void setArrayItemSize(int size);
+
 };
 
 #endif

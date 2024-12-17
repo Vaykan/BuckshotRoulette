@@ -12,6 +12,8 @@ public:
 
 public:
 
+    bool isEmpty();
+
 };
 
 #endif

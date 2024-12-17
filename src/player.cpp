@@ -29,3 +29,11 @@ void Player::setMaxHitPoint(int maxHitPoint) {
 int Player::getMaxHitPoint() const {
     return maxHitPoint;
 }
+
+void Player::setTarget(Player &target) {
+    this->target = &target;
+}
+
+void Player::setShotgun(Shotgun &shotgun) {
+    this->shotgun = &shotgun;
+}
