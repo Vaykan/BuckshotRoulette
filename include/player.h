@@ -3,8 +3,9 @@
 
 #include <vector>
 
-#include "items/item.h"
+#include "items/item.h."
 #include "shotgun.h"
+#include "enum.h"
 
 class Item;
 
@@ -13,21 +14,26 @@ class Player {
 private:
     int hitPoint = 0;
     int maxHitPoint = 0;
-    std::vector<Item> item;
+    int maxItem = 8;
+    std::vector<ItemType> item;
+    std::vector<Item> itemStorage;
     Shotgun* shotgun;
     Player* target;
 
 public:
-    void setHitPoint(int hitPoint);
-    int getHitPoint() const;
     void changeHitPoint(int delta);
+    void addRandomItem(int count);
 
-    void setMaxHitPoint(int maxHitPoint);
-    void setArrayItemSize(int size);
     void setTarget(Player& target);
     void setShotgun(Shotgun& shotgun);
+    void setItemStorage(std::vector<Item> itemStorage);
+    void setHitPoint(int hitPoint);
+    void setMaxHitPoint(int maxHitPoint);
+    void setArrayItemSize(int size);
+
 
     int getMaxHitPoint() const;
+    int getHitPoint() const;
 
 
 };

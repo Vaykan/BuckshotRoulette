@@ -1,4 +1,4 @@
-#include "items/session.h"
+#include "session.h"
 
 
 void Session::setDealer(Player &dealer) {

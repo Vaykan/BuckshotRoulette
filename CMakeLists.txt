@@ -17,7 +17,7 @@ add_executable(Buckshot_Roulette
         gameTable.cpp
         gameTable.h
         src/session.cpp
-        include/items/session.h
+        include/session.h
 )
 target_include_directories(Buckshot_Roulette PUBLIC include)
 
