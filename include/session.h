@@ -4,6 +4,8 @@
 #include "player.h"
 #include "shotgun.h"
 #include "items/item.h"
+#include "items/pill.h"
+#include "items/cigarette.h"
 
 class Player;
 class Shotgun;

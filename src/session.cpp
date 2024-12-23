@@ -12,9 +12,11 @@ void Session::setPlayer(Player &player) {
 void Session::start() {
     dealer.setTarget(player);
     dealer.setShotgun(shotgun);
+    dealer.setItemStorage({Pill(), Cigarette()});
 
     player.setTarget(dealer);
     player.setShotgun(shotgun);
+    player.setItemStorage({Pill(), Cigarette()});
 
     Player* object;
     Player* subject;
