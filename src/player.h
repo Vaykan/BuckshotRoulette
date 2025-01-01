@@ -22,7 +22,10 @@ private:
 
 public:
     void changeHitPoint(int delta);
-    void addRandomItem(int count);
+
+    void addRandomItems(int count);
+    int getItemCount();
+    void useItem(int index);
 
     void setTarget(Player& target);
     void setShotgun(Shotgun& shotgun);
@@ -30,7 +33,6 @@ public:
     void setHitPoint(int hitPoint);
     void setMaxHitPoint(int maxHitPoint);
     void setArrayItemSize(int size);
-
 
     int getMaxHitPoint() const;
     int getHitPoint() const;

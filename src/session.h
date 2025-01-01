@@ -6,6 +6,7 @@
 #include "items/item.h"
 #include "items/pill.h"
 #include "items/cigarette.h"
+#include "input.h"
 
 class Player;
 class Shotgun;
@@ -18,7 +19,9 @@ private:
 
 public:
 
+    void config();
     void start();
+
     void giveTurn(Player& subject);
 
     void setDealer(Player& dealer);

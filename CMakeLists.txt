@@ -19,5 +19,4 @@ add_executable(Buckshot_Roulette
         src/input.cpp
         src/input.h
 )
-target_include_directories(Buckshot_Roulette PUBLIC include)
 

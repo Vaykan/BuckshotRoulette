@@ -42,15 +42,22 @@ void Player::setShotgun(Shotgun &shotgun) {
 
 #include "items/pill.h"
 
-void Player::addRandomItem(int count) {
+void Player::addRandomItems(int count) {
     if (count > maxItem - item.size()) count = maxItem - item.size();
 
     for (int i = 0; i < count; ++i) {
-
         item.push_back(&itemStorage[rGetNum(0, itemStorage.size())]);
     }
 }
 
 void Player::setItemStorage(std::vector<Item> itemStorage) {
     this->itemStorage = std::move(itemStorage);
+}
+
+int Player::getItemCount() {
+    return item.size();
+}
+
+void Player::useItem(int index) {
+    item[index]->use();
 }
