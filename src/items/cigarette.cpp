@@ -1,4 +1,4 @@
-#include "items/cigarette.h"
+#include "cigarette.h"
 
 Cigarette::Cigarette() {
     itemType = CIGARETTE;

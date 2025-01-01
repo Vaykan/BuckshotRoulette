@@ -46,7 +46,8 @@ void Player::addRandomItem(int count) {
     if (count > maxItem - item.size()) count = maxItem - item.size();
 
     for (int i = 0; i < count; ++i) {
-        item.push_back(static_cast<ItemType>(rGetNum(1, itemStorage.size())));
+
+        item.push_back(&itemStorage[rGetNum(0, itemStorage.size())]);
     }
 }
 

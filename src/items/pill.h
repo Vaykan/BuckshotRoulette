@@ -1,7 +1,7 @@
 #ifndef BUCKSHOT_ROULETTE_PILL_H
 #define BUCKSHOT_ROULETTE_PILL_H
 
-#include "items/item.h"
+#include "item.h"
 
 class Pill : public Item {
 public:

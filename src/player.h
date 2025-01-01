@@ -15,7 +15,7 @@ private:
     int hitPoint = 0;
     int maxHitPoint = 0;
     int maxItem = 8;
-    std::vector<ItemType> item;
+    std::vector<Item*> item;
     std::vector<Item> itemStorage;
     Shotgun* shotgun;
     Player* target;

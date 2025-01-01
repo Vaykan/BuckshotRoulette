@@ -26,7 +26,7 @@ void Session::start() {
 
     while (player.getHitPoint() && dealer.getHitPoint()) {
         giveTurn(*subject);
-        if(shotgun.isEmpty()){
+        if(shotgun.isEmpty()) {
             object = &dealer;
             subject = &player;
         } else {

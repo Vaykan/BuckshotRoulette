@@ -1,4 +1,4 @@
-#include "items/pill.h"
+#include "pill.h"
 
 Pill::Pill() {
     itemType = PILL;

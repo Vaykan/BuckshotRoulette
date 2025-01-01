@@ -1,9 +1,7 @@
-#include "items/item.h"
+#include "item.h"
 
-Item::Item(Player& owner, Player& target){
+Item::Item(){
     itemType = EMPTY;
-    this->owner = &owner;
-    this->target = &target;
 }
 
 void Item::use() {}
