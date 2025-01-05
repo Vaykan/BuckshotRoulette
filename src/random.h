@@ -1,9 +1,17 @@
 #ifndef BUCKSHOT_ROULETTE__RANDOM_H
 #define BUCKSHOT_ROULETTE__RANDOM_H
 
-#include "enum.h"
+#include <random>
 
 int rGetNum(int min, int max);
-ShellType rGetRandShellType();
+int rGetRandBit();
+
+extern int lastMin;
+extern int lastMax;
+
+extern std::random_device rd;
+extern std::mt19937 gen;
+extern std::uniform_int_distribution<> dist;
+extern std::uniform_int_distribution<> distBit;
 
 #endif

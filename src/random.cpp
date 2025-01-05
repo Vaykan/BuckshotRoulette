@@ -1,22 +1,23 @@
-#include <random>
-
 #include "random.h"
 
-using namespace std;
+int lastMin = 0;
+int lastMax = 0;
+
+std::random_device rd;
+std::mt19937 gen(rd());
+std::uniform_int_distribution<> dist(lastMin, lastMax);
+std::uniform_int_distribution<> distBit(0, 1);
 
 int rGetNum(int min, int max) {
-    static random_device rd;
-    static mt19937 gen(rd());
-    uniform_int_distribution<> dist(min, max);
+    /*if(!(lastMin == min && lastMax == max)){
+        dist = std::uniform_int_distribution<>(min, max);
+        lastMin = min;
+        lastMax = max;
+    }*/
+    dist = std::uniform_int_distribution<>(min, max);
     return dist(gen);
 }
 
-ShellType rGetRandShellType() {
-    static random_device rd;
-    static mt19937 gen(rd());
-    uniform_int_distribution<> dist(0, 1);
-    int number = dist(gen);
-    if(number == 0)
-        return LIVE;
-    return BLANK;
+int rGetRandBit() {
+    return distBit(gen);
 }
