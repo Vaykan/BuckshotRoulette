@@ -1,44 +1,38 @@
 #include "shotgun.h"
 
-#include "random.h"
-
-void Shotgun::pumping() {
-    delete magazine[0];
-    magazine[0] = nullptr;
-    for(int i = 0; i < magazineSize - 1; i++){
-        if(magazine[i+1]){
-            magazine[i] = magazine[i+1];
-            magazine[i+1] = nullptr;
-        }
+void Shotgun::shoot(Player *target) {
+    if (magazine.back() == LIVE) {
+        std::cout << "SHOT!\n";
+        target->changeHitPoint(-1);
+    } else {
+        std::cout << "CLICK!\n";
     }
+    pumping();
 }
 
-void Shotgun::loading() {
-    int shellRange = rGetNum(2, 8);
-    int liveLeft = shellRange / 2;
-    int blankLeft = liveLeft;
-    if(shellRange % 2 != 0)
-        blankLeft += 1;
-    for (int i = 0; i < shellRange; i++) {
-        if(liveLeft && blankLeft) {
-            ShellType shellType = rGetRandShellType();
-            magazine[i] = new Shell(shellType);
-            if(shellType == LIVE)
-                liveLeft--;
-            if(shellType == BLANK)
-                blankLeft--;
-        }
-        else if(!liveLeft) {
-            magazine[i] = new Shell(BLANK);
-            blankLeft -= 1;
-        }
-        else {
-            magazine[i] = new Shell(LIVE);
-            liveLeft -= 1;
+void Shotgun::pumping() {
+    if(magazine.back() == LIVE)
+        std::cout << "LIVE shell ejected\n";
+    else
+        std::cout << "BLANK shell ejected\n";
+    magazine.pop_back();
+}
+
+void Shotgun::loading(int count) {
+    int liveLeft = count / 2;
+    while (liveLeft) {
+        int i = rGetNum(0, count - 1);
+        if(magazine[i] == BLANK){
+            magazine[i] = LIVE;
+            liveLeft--;
         }
     }
 }
 
 bool Shotgun::isEmpty() {
-    return false;
+    return magazine.empty();
+}
+
+void Shotgun::setSizeMagazine(int size) {
+    magazine.reserve(size);
 }

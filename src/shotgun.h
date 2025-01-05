@@ -1,21 +1,23 @@
 #ifndef BUCKSHOT_ROULETTE__SHOTGUN_H
 #define BUCKSHOT_ROULETTE__SHOTGUN_H
 
-#include "shell.h"
+#include <vector>
+#include <iostream>
+
+#include "random.h"
+#include "enum.h"
+#include "player.h"
 
 class Shotgun {
+private:
+    std::vector<ShellType> magazine;
 public:
-    static const int magazineSize = 8;
-    Shell *magazine[magazineSize]{nullptr};
+    void shoot(Player* target);
     void pumping();
-    void loading();
+    void loading(int count);
 
-public:
-
+    void setSizeMagazine(int size);
     bool isEmpty();
-
-
-
 };
 
 #endif
