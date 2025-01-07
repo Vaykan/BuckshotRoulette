@@ -26,6 +26,7 @@ void Session::start() {
             subject = &player;
             player.addRandomItems(rGetNum(1, 4));
             dealer.addRandomItems(rGetNum(1, 4));
+            shotgun.loading(rGetNum(2, 4));
         } else {
             std::swap(object, subject);
         }
@@ -35,12 +36,18 @@ void Session::start() {
 void Session::giveTurn(Player &subject) {
     std::cout << "Enter\n0 - Shot\n1 - Use Item\nInput:";
     while(getInputBool() && subject.getItemCount()) {
-        ///subject.getStats
+        subject.getStats();
         std::cout << "Enter number item\nInput:";
         subject.useItem(getCorrectInt(0, subject.getItemCount() - 1));
-        std::cout << "Enter\n0 - Shot\n1 - Use Item\nInput:";
+        if (!subject.getHitPoint())
+            return;
+        std::cout << "Enter\n0 - Shoot\n1 - Use Item\nInput:";
     }
-    ///shot
+    std::cout << "Enter\n0 - Shoot Yourself\n1 - Shoot " << subject.getTarget()->getName() << std::endl;
+    if(getInputBool())
+        shotgun.shoot(subject.getTarget());
+    else
+        shotgun.shoot(subject);
 }
 
 void Session::setDealer(Player &dealer) {

@@ -12,6 +12,7 @@ class Item;
 
 class Player {
 private:
+    std::string name;
     int hitPoint = 0;
     int maxHitPoint = 0;
     int maxItem = 8;
@@ -33,9 +34,13 @@ public:
     void setHitPoint(int hitPoint);
     void setMaxHitPoint(int maxHitPoint);
     void setArrayItemSize(int size);
+    void setName(std::string name);
 
+    void getStats();
     int getMaxHitPoint() const;
     int getHitPoint() const;
+    std::string getName();
+    Player* getTarget();
 
 
 };

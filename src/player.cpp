@@ -61,3 +61,24 @@ int Player::getItemCount() {
 void Player::useItem(int index) {
     item[index]->use();
 }
+
+void Player::getStats() {
+    std::cout << name << ": \n"
+    << "Hit Point: " << getHitPoint() << std::endl
+    << "Items: " << item.size() << std::endl;
+    for (int i = 0; i < item.size(); i++) {
+        std::cout << i << ": " << item[i]->getName() << std::endl;
+    }
+}
+
+void Player::setName(std::string name) {
+    this->name = std::move(name);
+}
+
+std::string Player::getName() {
+    return name;
+}
+
+Player *Player::getTarget() {
+    return target;
+}
