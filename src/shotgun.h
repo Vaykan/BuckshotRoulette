@@ -8,6 +8,8 @@
 #include "enum.h"
 #include "player.h"
 
+class Player;
+
 class Shotgun {
 private:
     std::vector<ShellType> magazine;

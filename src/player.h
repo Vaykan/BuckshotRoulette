@@ -8,7 +8,7 @@
 #include "enum.h"
 
 class Item;
-
+class Shotgun;
 
 class Player {
 private:
