@@ -6,7 +6,7 @@
 class Cigarette : public Item {
 public:
     Cigarette();
-    void use(Player &subjectPlayer, Player &objectPlayer, Shotgun &shotgun) override;
+    void use() override;
 };
 
 

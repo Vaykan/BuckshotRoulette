@@ -2,6 +2,7 @@
 
 Item::Item(){
     itemType = EMPTY;
+    name = "EMPTY";
 }
 
 void Item::use() {}
@@ -10,6 +11,6 @@ void Item::setOwner(Player& owner) {
     this->owner = &owner;
 }
 
-void Item::setTarget(Player& target) {
-    this->target = &target;
+std::string Item::getName() {
+    return name;
 }
