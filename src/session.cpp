@@ -47,7 +47,7 @@ void Session::giveTurn(Player &subject) {
     if(getInputBool())
         shotgun.shoot(subject.getTarget());
     else
-        shotgun.shoot(subject);
+        shotgun.shoot(&subject);
 }
 
 void Session::setDealer(Player &dealer) {

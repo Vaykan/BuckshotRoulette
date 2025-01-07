@@ -7,7 +7,6 @@ add_executable(Buckshot_Roulette
         src/items/item.cpp
         src/main.cpp
         src/random.cpp
-        src/shell.cpp
         src/shotgun.cpp
         src/player.cpp
         src/items/pill.cpp
