@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "items/item.h."
+#include "items/item.h"
 #include "shotgun.h"
 #include "enum.h"
 
