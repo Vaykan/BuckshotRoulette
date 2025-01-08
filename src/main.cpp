@@ -1,12 +1,8 @@
-#include <iostream>
-#include <vector>
-
-#include "items/item.h"
-#include "items/pill.h"
-#include "shell.h"
-#include "shotgun.h"
+#include "session.h"
 
 int main() {
-
+    Session session;
+    session.config();
+    session.start();
     return 0;
 }

@@ -17,30 +17,38 @@ private:
     int maxHitPoint = 0;
     int maxItem = 8;
     std::vector<Item*> item;
-    std::vector<Item> itemStorage;
+    std::vector<Item*> itemStorage;
     Shotgun* shotgun;
     Player* target;
+    bool skipTurn = false;
+    std::string reasonSkipTurn{};
 
 public:
-    void changeHitPoint(int delta);
+    ~Player();
 
+    void changeHitPoint(int delta);
     void addRandomItems(int count);
-    int getItemCount();
     void useItem(int index);
 
     void setTarget(Player& target);
     void setShotgun(Shotgun& shotgun);
-    void setItemStorage(std::vector<Item> itemStorage);
+    void setItemStorage(std::vector<Item*> itemStorage);
     void setHitPoint(int hitPoint);
     void setMaxHitPoint(int maxHitPoint);
     void setArrayItemSize(int size);
     void setName(std::string name);
+    void setSkipTurn(bool skipTurn, std::string reason);
 
     void getStats();
+    int getItemCount();
     int getMaxHitPoint() const;
     int getHitPoint() const;
     std::string getName();
     Player* getTarget();
+    std::vector<Item*> getItemStorage();
+    bool isSkipTurn() const;
+    std::string getReasonSkipTurn();
+
 
 
 };

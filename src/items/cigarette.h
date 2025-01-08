@@ -6,7 +6,7 @@
 class Cigarette : public Item {
 public:
     Cigarette();
-    void use() override;
+    void use() final;
 };
 
 

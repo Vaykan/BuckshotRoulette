@@ -3,6 +3,8 @@ project(Buckshot_Roulette)
 
 set(CMAKE_CXX_STANDARD 23)
 
+set(CMAKE_CXX_FLAGS "-static")
+
 add_executable(Buckshot_Roulette
         src/items/item.cpp
         src/main.cpp

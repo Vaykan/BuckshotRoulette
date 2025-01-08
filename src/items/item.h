@@ -12,14 +12,14 @@ private:
 protected:
     Item();
     std::string name;
-    Player* owner;
+    Player* owner{};
     ItemType itemType;
 public:
     virtual void use();
 
-    virtual void setOwner(Player& owner);
+    void setOwner(Player& owner);
 
-    virtual std::string getName();
+    std::string getName();
 
     
 };

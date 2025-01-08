@@ -46,11 +46,11 @@ void Player::addRandomItems(int count) {
     if (count > maxItem - item.size()) count = maxItem - item.size();
 
     for (int i = 0; i < count; ++i) {
-        item.push_back(&itemStorage[rGetNum(0, itemStorage.size())]);
+        item.push_back(itemStorage[rGetNum(0, itemStorage.size() - 1)]);
     }
 }
 
-void Player::setItemStorage(std::vector<Item> itemStorage) {
+void Player::setItemStorage(std::vector<Item*> itemStorage) {
     this->itemStorage = std::move(itemStorage);
 }
 
@@ -60,15 +60,17 @@ int Player::getItemCount() {
 
 void Player::useItem(int index) {
     item[index]->use();
+    item.erase(item.begin() + index);
 }
 
 void Player::getStats() {
     std::cout << name << ": \n"
     << "Hit Point: " << getHitPoint() << std::endl
-    << "Items: " << item.size() << std::endl;
+    << "Item count: " << item.size() << std::endl;
     for (int i = 0; i < item.size(); i++) {
         std::cout << i << ": " << item[i]->getName() << std::endl;
     }
+    std::cout << "\n\n";
 }
 
 void Player::setName(std::string name) {
@@ -81,4 +83,27 @@ std::string Player::getName() {
 
 Player *Player::getTarget() {
     return target;
+}
+
+std::vector<Item*> Player::getItemStorage() {
+    return itemStorage;
+}
+
+Player::~Player() {
+    for (auto & i : itemStorage) {
+        delete i;
+    }
+}
+
+bool Player::isSkipTurn() const {
+    return skipTurn;
+}
+
+void Player::setSkipTurn(bool skipTurn, std::string reason) {
+    this->skipTurn = skipTurn;
+    reasonSkipTurn = reason;
+}
+
+std::string Player::getReasonSkipTurn() {
+    return reasonSkipTurn;
 }

@@ -19,7 +19,9 @@ public:
     void loading(int count);
 
     void setSizeMagazine(int size);
+    void displayMagazineContents();
     bool isEmpty();
+    ShellType getBackShell();
 };
 
 #endif
