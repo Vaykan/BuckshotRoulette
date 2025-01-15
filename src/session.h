@@ -6,6 +6,13 @@
 #include "items/item.h"
 #include "items/pill.h"
 #include "items/cigarette.h"
+#include "items/beer.h"
+#include "items/adrenaline.h"
+#include "items/magnifier.h"
+#include "items/handcuffs.h"
+#include "items/inverter.h"
+#include "items/saw.h"
+#include "items/phone.h"
 #include "input.h"
 
 class Player;

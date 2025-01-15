@@ -22,6 +22,7 @@ private:
     Player* target;
     bool skipTurn = false;
     std::string reasonSkipTurn{};
+    bool dead = false;
 
 public:
     ~Player();
@@ -45,9 +46,12 @@ public:
     int getHitPoint() const;
     std::string getName();
     Player* getTarget();
-    std::vector<Item*> getItemStorage();
+    std::vector<Item*>& getItemStorage();
     bool isSkipTurn() const;
+    bool isDead();
     std::string getReasonSkipTurn();
+    Shotgun* getShotgun();
+    std::vector<Item*>& getItem();
 
 
 

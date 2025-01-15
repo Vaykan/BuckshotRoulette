@@ -12,6 +12,13 @@ class Player;
 
 class Shotgun {
 private:
+    bool doubleDamage = false;
+public:
+    bool isDoubleDamage() const;
+
+    void setDoubleDamage(bool doubleDamage);
+
+private:
     std::vector<ShellType> magazine;
 public:
     void shoot(Player* target);
@@ -21,7 +28,9 @@ public:
     void setSizeMagazine(int size);
     void displayMagazineContents();
     bool isEmpty();
-    ShellType getBackShell();
+    ShellType& getBackShell();
+    std::vector<ShellType>& getMagazine();
+
 };
 
 #endif

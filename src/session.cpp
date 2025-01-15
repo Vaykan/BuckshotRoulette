@@ -6,7 +6,8 @@ void Session::config() {
     dealer.setName("Dealer");
     dealer.setTarget(player);
     dealer.setShotgun(shotgun);
-    dealer.setItemStorage({new Pill(), new Cigarette()});
+    dealer.setMaxHitPoint(4);
+    dealer.setItemStorage({new Pill(), new Cigarette(), new Beer(), new Adrenaline(), new Magnifier(), new Handcuffs(), new Inverter(), new Saw(), new Phone()});
     for (auto & i : dealer.getItemStorage()) {
         i->setOwner(dealer);
     }
@@ -14,7 +15,8 @@ void Session::config() {
     player.setName("Player");
     player.setTarget(dealer);
     player.setShotgun(shotgun);
-    player.setItemStorage({new Pill(), new Cigarette()});
+    player.setMaxHitPoint(4);
+    player.setItemStorage({new Pill(), new Cigarette(), new Beer(), new Adrenaline(), new Magnifier(), new Handcuffs(), new Inverter(), new Saw(), new Phone()});
     for (auto & i : player.getItemStorage()) {
         i->setOwner(player);
     }
@@ -27,10 +29,7 @@ void Session::start() {
     object = &dealer;
     subject = &player;
 
-    dealer.setMaxHitPoint(4);
     dealer.setHitPoint(4);
-
-    player.setMaxHitPoint(4);
     player.setHitPoint(4);
 
     {
@@ -39,7 +38,7 @@ void Session::start() {
         dealer.addRandomItems(countItem);
     }
 
-    shotgun.loading(rGetNum(2, 4));
+    shotgun.loading(rGetNum(2, 8));
     shotgun.displayMagazineContents();
 
     while (player.getHitPoint() && dealer.getHitPoint()) {
@@ -72,7 +71,7 @@ void Session::giveTurn(Player &subject) {
         subject.getTarget()->getStats();
         std::cout << "Enter number item\nInput:";
         subject.useItem(getCorrectInt(0, subject.getItemCount() - 1));
-        if (!subject.getHitPoint())
+        if (player.isDead() || dealer.isDead() || shotgun.isEmpty())
             return;
         std::cout << "Enter\n0 - Shoot\n1 - Use Item\nInput:";
         std::cout << "\n\n";

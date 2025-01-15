@@ -9,7 +9,14 @@ enum ShellType{
 enum ItemType{
     EMPTY,
     PILL,
-    CIGARETTE
+    CIGARETTE,
+    BEER,
+    ADRENALINE,
+    MAGNIFIER,
+    HANDCUFFS,
+    INVERTER,
+    SAW,
+    PHONE
 };
 
 #endif

@@ -4,6 +4,7 @@
 #include "../enum.h"
 #include "../player.h"
 #include "../random.h"
+#include "../input.h"
 
 class Player;
 

@@ -4,11 +4,15 @@ void Shotgun::shoot(Player *target) {
     std::cout << "\n\n";
     if (magazine.back() == LIVE) {
         std::cout << "SHOT!\n";
-        target->changeHitPoint(-1);
+        if (doubleDamage)
+            target->changeHitPoint(-2);
+        else
+            target->changeHitPoint(-1);
     } else {
         std::cout << "CLICK!\n";
     }
     pumping();
+    doubleDamage = false;
 }
 
 void Shotgun::pumping() {
@@ -57,6 +61,18 @@ void Shotgun::displayMagazineContents() {
     std::cout << "\n\n";
 }
 
-ShellType Shotgun::getBackShell() {
+ShellType& Shotgun::getBackShell() {
     return magazine.back();
+}
+
+std::vector<ShellType>& Shotgun::getMagazine() {
+    return magazine;
+}
+
+bool Shotgun::isDoubleDamage() const {
+    return doubleDamage;
+}
+
+void Shotgun::setDoubleDamage(bool doubleDamage) {
+    this->doubleDamage = doubleDamage;
 }

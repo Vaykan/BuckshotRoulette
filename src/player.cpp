@@ -12,10 +12,11 @@ int Player::getHitPoint() const {
 
 void Player::changeHitPoint(int delta) {
     int newHitPoint = hitPoint + delta;
-    if (newHitPoint > maxHitPoint) {
-        newHitPoint = maxHitPoint;
-    }else if (newHitPoint < 0) {
+    if (newHitPoint <= 0) {
         newHitPoint = 0;
+        dead = true;
+    }else if (newHitPoint > maxHitPoint) {
+        newHitPoint = maxHitPoint;
     }
     setHitPoint(newHitPoint);
 }
@@ -85,7 +86,7 @@ Player *Player::getTarget() {
     return target;
 }
 
-std::vector<Item*> Player::getItemStorage() {
+std::vector<Item*>& Player::getItemStorage() {
     return itemStorage;
 }
 
@@ -106,4 +107,16 @@ void Player::setSkipTurn(bool skipTurn, std::string reason) {
 
 std::string Player::getReasonSkipTurn() {
     return reasonSkipTurn;
+}
+
+Shotgun *Player::getShotgun() {
+    return shotgun;
+}
+
+bool Player::isDead() {
+    return dead;
+}
+
+std::vector<Item *>& Player::getItem() {
+    return item;
 }
