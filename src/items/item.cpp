@@ -14,3 +14,7 @@ void Item::setOwner(Player& owner) {
 std::string Item::getName() {
     return name;
 }
+
+bool Item::isUsable() {
+    return true;
+}

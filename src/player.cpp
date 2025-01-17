@@ -2,6 +2,10 @@
 
 #include <utility>
 
+Player::Player() {
+    skipReason.reserve(2);
+}
+
 void Player::setHitPoint(int hitPoint) {
     this->hitPoint = hitPoint;
 }
@@ -22,7 +26,7 @@ void Player::changeHitPoint(int delta) {
 }
 
 void Player::setArrayItemSize(int size) {
-    item.resize(size);
+    item.reserve(size);
 }
 
 void Player::setMaxHitPoint(int maxHitPoint) {
@@ -60,8 +64,12 @@ int Player::getItemCount() {
 }
 
 void Player::useItem(int index) {
-    item[index]->use();
-    item.erase(item.begin() + index);
+    if (item[index]->isUsable()) {
+        item[index]->use();
+        item.erase(item.begin() + index);
+    } else {
+        std::cout << "Cannot be used\n\n";
+    }
 }
 
 void Player::getStats() {
@@ -94,19 +102,19 @@ Player::~Player() {
     for (auto & i : itemStorage) {
         delete i;
     }
+    skipReason.reserve(2);
 }
 
 bool Player::isSkipTurn() const {
-    return skipTurn;
+    return !skipReason.empty();
 }
 
-void Player::setSkipTurn(bool skipTurn, std::string reason) {
-    this->skipTurn = skipTurn;
-    reasonSkipTurn = reason;
+void Player::addSkipTurn(std::string reason) {
+    skipReason.push_back(reason);
 }
 
 std::string Player::getReasonSkipTurn() {
-    return reasonSkipTurn;
+    return skipReason.back();
 }
 
 Shotgun *Player::getShotgun() {
@@ -119,4 +127,17 @@ bool Player::isDead() {
 
 std::vector<Item *>& Player::getItem() {
     return item;
+}
+
+bool Player::isHandcuffed() const {
+    return IsHandcuffed;
+}
+
+void Player::setIsHandcuffed(bool isHandcuffed) {
+    this->IsHandcuffed = isHandcuffed;
+}
+
+void Player::decreaseSkipTurn() {
+    if (!skipReason.empty())
+        skipReason.pop_back();
 }

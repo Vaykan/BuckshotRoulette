@@ -17,6 +17,7 @@ protected:
     ItemType itemType;
 public:
     virtual void use();
+    virtual bool isUsable();
 
     void setOwner(Player& owner);
 

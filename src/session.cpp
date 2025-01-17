@@ -11,6 +11,7 @@ void Session::config() {
     for (auto & i : dealer.getItemStorage()) {
         i->setOwner(dealer);
     }
+    dealer.setArrayItemSize(8);
 
     player.setName("Player");
     player.setTarget(dealer);
@@ -20,6 +21,7 @@ void Session::config() {
     for (auto & i : player.getItemStorage()) {
         i->setOwner(player);
     }
+    player.setArrayItemSize(8);
 }
 
 void Session::start() {
@@ -42,13 +44,14 @@ void Session::start() {
     shotgun.displayMagazineContents();
 
     while (player.getHitPoint() && dealer.getHitPoint()) {
-        if (subject->isSkipTurn()){
+        if (subject->isSkipTurn()) {
             std::cout << subject->getReasonSkipTurn();
-            subject->setSkipTurn(false, "");
+            subject->decreaseSkipTurn();
         } else {
+            subject->setIsHandcuffed(false);
             giveTurn(*subject);
         }
-        if(shotgun.isEmpty()) {
+        if (shotgun.isEmpty()) {
             object = &dealer;
             subject = &player;
             int countItem = rGetNum(1, 4);
@@ -82,7 +85,7 @@ void Session::giveTurn(Player &subject) {
         shotgun.shoot(subject.getTarget());
     } else {
         if (shotgun.getBackShell() == BLANK)
-            subject.getTarget()->setSkipTurn(true, "");
+            subject.getTarget()->addSkipTurn("");
         shotgun.shoot(&subject);
     }
 }

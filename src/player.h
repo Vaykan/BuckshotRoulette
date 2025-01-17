@@ -20,11 +20,11 @@ private:
     std::vector<Item*> itemStorage;
     Shotgun* shotgun;
     Player* target;
-    bool skipTurn = false;
-    std::string reasonSkipTurn{};
+    std::vector <std::string> skipReason;
     bool dead = false;
-
+    bool IsHandcuffed = false;
 public:
+    Player();
     ~Player();
 
     void changeHitPoint(int delta);
@@ -38,7 +38,8 @@ public:
     void setMaxHitPoint(int maxHitPoint);
     void setArrayItemSize(int size);
     void setName(std::string name);
-    void setSkipTurn(bool skipTurn, std::string reason);
+    void addSkipTurn(std::string reason);
+    void decreaseSkipTurn();
 
     void getStats();
     int getItemCount();
@@ -49,6 +50,8 @@ public:
     std::vector<Item*>& getItemStorage();
     bool isSkipTurn() const;
     bool isDead();
+    bool isHandcuffed() const;
+    void setIsHandcuffed(bool isHandcuffed);
     std::string getReasonSkipTurn();
     Shotgun* getShotgun();
     std::vector<Item*>& getItem();

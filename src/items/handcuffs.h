@@ -7,6 +7,7 @@ class Handcuffs : public Item{
 public:
     Handcuffs();
     void use() final;
+    bool isUsable() final;
 };
 
 
