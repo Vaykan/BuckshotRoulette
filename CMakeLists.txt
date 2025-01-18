@@ -3,11 +3,7 @@ project(Buckshot_Roulette)
 
 set(CMAKE_CXX_STANDARD 23)
 
-set(CMAKE_CXX_FLAGS "-Wall -Wextra")
-set(CMAKE_CXX_FLAGS "-g")
-set(CMAKE_CXX_FLAGS "-O3")
-
-set(CMAKE_CXX_FLAGS "-static")
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -static")
 
 add_executable(Buckshot_Roulette
         src/items/item.cpp
