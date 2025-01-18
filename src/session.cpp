@@ -63,6 +63,11 @@ void Session::start() {
             std::swap(object, subject);
         }
     }
+    if (!player.getHitPoint())
+        std::cout << "\nPlayer dead\n";
+    else if (!dealer.getHitPoint())
+        std::cout << "\nDealer dead\n\n";
+
 }
 
 void Session::giveTurn(Player &subject) {

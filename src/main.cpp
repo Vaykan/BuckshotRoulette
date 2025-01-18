@@ -4,5 +4,6 @@ int main() {
     Session session;
     session.config();
     session.start();
+    system("pause");
     return 0;
 }

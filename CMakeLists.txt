@@ -38,4 +38,3 @@ add_executable(Buckshot_Roulette
         src/items/phone.cpp
         src/items/phone.h
 )
-
