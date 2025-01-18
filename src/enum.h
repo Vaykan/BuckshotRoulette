@@ -1,12 +1,12 @@
-#ifndef BUCKSHOT_ROULETTE__ENUM_H
-#define BUCKSHOT_ROULETTE__ENUM_H
+#ifndef BUCKSHOT_ROULETTE_ENUM_H
+#define BUCKSHOT_ROULETTE_ENUM_H
 
-enum ShellType{
+enum ShellType {
     LIVE,
     BLANK
 };
 
-enum ItemType{
+enum ItemType {
     EMPTY,
     PILL,
     CIGARETTE,

@@ -1,6 +1,6 @@
 #include "input.h"
 
-bool getInputBool(){
+bool getInputBool() {
     unsigned int x;
     do {
         std::cin.clear();
@@ -10,7 +10,7 @@ bool getInputBool(){
     return x;
 }
 
-int getCorrectInt(int min, int max){
+int getCorrectInt(int min, int max) {
     int x;
     do {
         std::cin.clear();

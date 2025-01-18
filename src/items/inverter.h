@@ -3,9 +3,10 @@
 
 #include "item.h"
 
-class Inverter : public Item{
+class Inverter : public Item {
 public:
     Inverter();
+
     void use() final;
 };
 

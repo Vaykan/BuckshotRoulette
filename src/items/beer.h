@@ -3,11 +3,11 @@
 
 #include "item.h"
 
-class Beer : public Item  {
+class Beer : public Item {
 public:
     Beer();
+
     void use() final;
 };
-
 
 #endif

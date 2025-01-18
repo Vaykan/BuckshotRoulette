@@ -16,48 +16,55 @@ private:
     int hitPoint = 0;
     int maxHitPoint = 0;
     int maxItem = 8;
-    std::vector<Item*> item;
-    std::vector<Item*> itemStorage;
-    Shotgun* shotgun;
-    Player* target;
-    std::vector <std::string> skipReason;
     bool dead = false;
     bool IsHandcuffed = false;
+
+    std::vector<Item*> item;
+    std::vector<Item*> itemStorage;
+    std::vector<std::string> skipReason;
+
+    Shotgun* shotgun;
+    Player* target;
 public:
     Player();
     ~Player();
 
-    void changeHitPoint(int delta);
-    void addRandomItems(int count);
-    void useItem(int index);
-
-    void setTarget(Player& target);
-    void setShotgun(Shotgun& shotgun);
-    void setItemStorage(std::vector<Item*> itemStorage);
-    void setHitPoint(int hitPoint);
-    void setMaxHitPoint(int maxHitPoint);
-    void setArrayItemSize(int size);
     void setName(std::string name);
-    void addSkipTurn(std::string reason);
-    void decreaseSkipTurn();
+    std::string getName();
 
     void getStats();
-    int getItemCount();
-    int getMaxHitPoint() const;
+
+    void changeHitPoint(int delta);
+    void setHitPoint(int hitPoint);
     int getHitPoint() const;
-    std::string getName();
-    Player* getTarget();
-    std::vector<Item*>& getItemStorage();
-    bool isSkipTurn() const;
+
+    void setMaxHitPoint(int maxHitPoint);
+    int getMaxHitPoint() const;
+
     bool isDead();
-    bool isHandcuffed() const;
+
     void setIsHandcuffed(bool isHandcuffed);
-    std::string getReasonSkipTurn();
-    Shotgun* getShotgun();
+    bool isHandcuffed() const;
+
+    void useItem(int index);
+    void addRandomItems(int count);
+    void setArrayItemSize(int size);
+    int getItemCount();
     std::vector<Item*>& getItem();
 
+    void setItemStorage(std::vector<Item*> itemStorage);
+    std::vector<Item*>& getItemStorage();
 
+    void setTarget(Player& target);
+    Player* getTarget();
 
+    void setShotgun(Shotgun& shotgun);
+    Shotgun* getShotgun();
+
+    void addSkipTurn(std::string reason);
+    void decreaseSkipTurn();
+    bool isSkipTurn() const;
+    std::string getReasonSkipTurn();
 };
 
 #endif

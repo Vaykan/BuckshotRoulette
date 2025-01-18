@@ -19,7 +19,7 @@ void Player::changeHitPoint(int delta) {
     if (newHitPoint <= 0) {
         newHitPoint = 0;
         dead = true;
-    }else if (newHitPoint > maxHitPoint) {
+    } else if (newHitPoint > maxHitPoint) {
         newHitPoint = maxHitPoint;
     }
     setHitPoint(newHitPoint);
@@ -37,11 +37,11 @@ int Player::getMaxHitPoint() const {
     return maxHitPoint;
 }
 
-void Player::setTarget(Player &target) {
+void Player::setTarget(Player& target) {
     this->target = &target;
 }
 
-void Player::setShotgun(Shotgun &shotgun) {
+void Player::setShotgun(Shotgun& shotgun) {
     this->shotgun = &shotgun;
 }
 
@@ -74,8 +74,8 @@ void Player::useItem(int index) {
 
 void Player::getStats() {
     std::cout << name << ": \n"
-    << "Hit Point: " << getHitPoint() << std::endl
-    << "Item count: " << item.size() << std::endl;
+              << "Hit Point: " << getHitPoint() << std::endl
+              << "Item count: " << item.size() << std::endl;
     for (int i = 0; i < item.size(); i++) {
         std::cout << i << ": " << item[i]->getName() << std::endl;
     }
@@ -90,7 +90,7 @@ std::string Player::getName() {
     return name;
 }
 
-Player *Player::getTarget() {
+Player* Player::getTarget() {
     return target;
 }
 
@@ -99,7 +99,7 @@ std::vector<Item*>& Player::getItemStorage() {
 }
 
 Player::~Player() {
-    for (auto & i : itemStorage) {
+    for (auto& i: itemStorage) {
         delete i;
     }
     skipReason.reserve(2);
@@ -117,7 +117,7 @@ std::string Player::getReasonSkipTurn() {
     return skipReason.back();
 }
 
-Shotgun *Player::getShotgun() {
+Shotgun* Player::getShotgun() {
     return shotgun;
 }
 
@@ -125,7 +125,7 @@ bool Player::isDead() {
     return dead;
 }
 
-std::vector<Item *>& Player::getItem() {
+std::vector<Item*>& Player::getItem() {
     return item;
 }
 

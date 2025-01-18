@@ -1,14 +1,14 @@
 #include "session.h"
 
 
-
 void Session::config() {
     dealer.setName("Dealer");
     dealer.setTarget(player);
     dealer.setShotgun(shotgun);
     dealer.setMaxHitPoint(4);
-    dealer.setItemStorage({new Pill(), new Cigarette(), new Beer(), new Adrenaline(), new Magnifier(), new Handcuffs(), new Inverter(), new Saw(), new Phone()});
-    for (auto & i : dealer.getItemStorage()) {
+    dealer.setItemStorage({new Pill(), new Cigarette(), new Beer(), new Adrenaline(), new Magnifier(), new Handcuffs(),
+                           new Inverter(), new Saw(), new Phone()});
+    for (auto& i: dealer.getItemStorage()) {
         i->setOwner(dealer);
     }
     dealer.setArrayItemSize(8);
@@ -17,8 +17,9 @@ void Session::config() {
     player.setTarget(dealer);
     player.setShotgun(shotgun);
     player.setMaxHitPoint(4);
-    player.setItemStorage({new Pill(), new Cigarette(), new Beer(), new Adrenaline(), new Magnifier(), new Handcuffs(), new Inverter(), new Saw(), new Phone()});
-    for (auto & i : player.getItemStorage()) {
+    player.setItemStorage({new Pill(), new Cigarette(), new Beer(), new Adrenaline(), new Magnifier(), new Handcuffs(),
+                           new Inverter(), new Saw(), new Phone()});
+    for (auto& i: player.getItemStorage()) {
         i->setOwner(player);
     }
     player.setArrayItemSize(8);
@@ -70,11 +71,11 @@ void Session::start() {
 
 }
 
-void Session::giveTurn(Player &subject) {
+void Session::giveTurn(Player& subject) {
     subject.getStats();
     subject.getTarget()->getStats();
     std::cout << "Enter\n0 - Shot\n1 - Use Item\nInput:";
-    while(getInputBool() && subject.getItemCount()) {
+    while (getInputBool() && subject.getItemCount()) {
         subject.getStats();
         subject.getTarget()->getStats();
         std::cout << "Enter number item\nInput:";
@@ -86,7 +87,7 @@ void Session::giveTurn(Player &subject) {
     }
     std::cout << "\n\n";
     std::cout << "Enter\n0 - Shoot Yourself\n1 - Shoot " << subject.getTarget()->getName() << "\nInput: ";
-    if(getInputBool()) {
+    if (getInputBool()) {
         shotgun.shoot(subject.getTarget());
     } else {
         if (shotgun.getBackShell() == BLANK)
@@ -95,10 +96,10 @@ void Session::giveTurn(Player &subject) {
     }
 }
 
-void Session::setDealer(Player &dealer) {
+void Session::setDealer(Player& dealer) {
     this->dealer = dealer;
 }
 
-void Session::setPlayer(Player &player) {
+void Session::setPlayer(Player& player) {
     this->player = dealer;
 }

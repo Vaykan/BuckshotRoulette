@@ -6,8 +6,8 @@
 class Pill : public Item {
 public:
     Pill();
+
     void use() final;
 };
-
 
 #endif

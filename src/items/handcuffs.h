@@ -3,12 +3,12 @@
 
 #include "item.h"
 
-class Handcuffs : public Item{
+class Handcuffs : public Item {
 public:
     Handcuffs();
+
     void use() final;
     bool isUsable() final;
 };
-
 
 #endif

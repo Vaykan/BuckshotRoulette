@@ -1,5 +1,5 @@
-#ifndef BUCKSHOT_ROULETTE__ITEM_H
-#define BUCKSHOT_ROULETTE__ITEM_H
+#ifndef BUCKSHOT_ROULETTE_ITEM_H
+#define BUCKSHOT_ROULETTE_ITEM_H
 
 #include "../enum.h"
 #include "../player.h"
@@ -9,23 +9,20 @@
 class Player;
 
 class Item {
-private:
 protected:
     Item();
+
     std::string name;
-    Player* owner{};
     ItemType itemType;
+
+    Player* owner{};
 public:
-    virtual void use();
-    virtual bool isUsable();
+    std::string getName();
 
     void setOwner(Player& owner);
 
-    std::string getName();
-
-    
+    virtual void use();
+    virtual bool isUsable();
 };
-
-
 
 #endif

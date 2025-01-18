@@ -1,5 +1,5 @@
-#ifndef BUCKSHOT_ROULETTE__SHOTGUN_H
-#define BUCKSHOT_ROULETTE__SHOTGUN_H
+#ifndef BUCKSHOT_ROULETTE_SHOTGUN_H
+#define BUCKSHOT_ROULETTE_SHOTGUN_H
 
 #include <vector>
 #include <iostream>
@@ -13,14 +13,12 @@ class Player;
 class Shotgun {
 private:
     bool doubleDamage = false;
-public:
-    bool isDoubleDamage() const;
 
-    void setDoubleDamage(bool doubleDamage);
-
-private:
     std::vector<ShellType> magazine;
 public:
+    void setDoubleDamage(bool doubleDamage);
+    bool isDoubleDamage() const;
+
     void shoot(Player* target);
     void pumping();
     void loading(int count);
@@ -30,7 +28,6 @@ public:
     bool isEmpty();
     ShellType& getBackShell();
     std::vector<ShellType>& getMagazine();
-
 };
 
 #endif

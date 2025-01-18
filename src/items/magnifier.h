@@ -3,9 +3,10 @@
 
 #include "item.h"
 
-class Magnifier : public Item{
+class Magnifier : public Item {
 public:
     Magnifier();
+
     void use() final;
 };
 

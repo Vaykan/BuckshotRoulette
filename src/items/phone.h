@@ -3,9 +3,10 @@
 
 #include "item.h"
 
-class Phone : public Item{
+class Phone : public Item {
 public:
     Phone();
+
     void use() final;
 };
 

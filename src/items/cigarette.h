@@ -6,8 +6,8 @@
 class Cigarette : public Item {
 public:
     Cigarette();
+
     void use() final;
 };
-
 
 #endif

@@ -3,6 +3,8 @@
 
 #include "player.h"
 #include "shotgun.h"
+#include "input.h"
+
 #include "items/item.h"
 #include "items/pill.h"
 #include "items/cigarette.h"
@@ -13,19 +15,15 @@
 #include "items/inverter.h"
 #include "items/saw.h"
 #include "items/phone.h"
-#include "input.h"
 
 class Player;
 class Shotgun;
-
 
 class Session {
 private:
     Player dealer, player;
     Shotgun shotgun;
-
 public:
-
     void config();
     void start();
 

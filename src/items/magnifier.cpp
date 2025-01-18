@@ -1,7 +1,3 @@
-//
-// Created by admin on 15.01.2025.
-//
-
 #include "magnifier.h"
 
 Magnifier::Magnifier() {

@@ -3,11 +3,11 @@
 
 #include "item.h"
 
-class Saw : public Item{
+class Saw : public Item {
 public:
     Saw();
+
     void use() final;
 };
-
 
 #endif

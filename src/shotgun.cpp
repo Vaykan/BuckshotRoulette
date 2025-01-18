@@ -1,6 +1,6 @@
 #include "shotgun.h"
 
-void Shotgun::shoot(Player *target) {
+void Shotgun::shoot(Player* target) {
     std::cout << "\n\n";
     if (magazine.back() == LIVE) {
         std::cout << "SHOT!\n";
@@ -16,7 +16,7 @@ void Shotgun::shoot(Player *target) {
 }
 
 void Shotgun::pumping() {
-    if(magazine.back() == LIVE)
+    if (magazine.back() == LIVE)
         std::cout << "LIVE shell ejected\n";
     else
         std::cout << "BLANK shell ejected\n";
@@ -31,7 +31,7 @@ void Shotgun::loading(int count) {
     int liveLeft = count / 2;
     while (liveLeft) {
         int i = rGetNum(0, magazine.size() - 1);
-        if(magazine[i] == BLANK){
+        if (magazine[i] == BLANK) {
             magazine[i] = LIVE;
             liveLeft--;
         }
@@ -49,16 +49,15 @@ void Shotgun::setSizeMagazine(int size) {
 void Shotgun::displayMagazineContents() {
     int live = 0;
     int blank = 0;
-    for (auto & i : magazine) {
+    for (auto& i: magazine) {
         if (i == LIVE)
             live++;
         else
             blank++;
     }
     std::cout << "Shotgun loaded:\n"
-    << live << " Live\n"
-    << blank << " Blank";
-    std::cout << "\n\n";
+              << live << " Live\n"
+              << blank << " Blank\n\n";
 }
 
 ShellType& Shotgun::getBackShell() {

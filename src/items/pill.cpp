@@ -6,7 +6,7 @@ Pill::Pill() {
 }
 
 void Pill::use() {
-    if(rGetRandBit()){
+    if (rGetRandBit()) {
         owner->changeHitPoint(2);
         std::cout << owner->getName() << " used Pill, restoring 2 HP\n\n";
     } else {
@@ -14,4 +14,3 @@ void Pill::use() {
         std::cout << owner->getName() << " used Pill, losing 1 HP\n\n";
     }
 }
-

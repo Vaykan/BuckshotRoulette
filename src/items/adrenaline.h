@@ -3,9 +3,11 @@
 
 #include "item.h"
 
-class Adrenaline : public Item{
+class Adrenaline : public Item {
 public:
     Adrenaline();
+
     void use() final;
 };
+
 #endif
