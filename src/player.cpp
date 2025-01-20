@@ -102,7 +102,6 @@ Player::~Player() {
     for (auto& i: itemStorage) {
         delete i;
     }
-    skipReason.reserve(2);
 }
 
 bool Player::isSkipTurn() const {

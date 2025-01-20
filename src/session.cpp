@@ -1,6 +1,5 @@
 #include "session.h"
 
-
 void Session::config() {
     dealer.setName("Dealer");
     dealer.setTarget(player);
@@ -35,11 +34,9 @@ void Session::start() {
     dealer.setHitPoint(4);
     player.setHitPoint(4);
 
-    {
-        int countItem = rGetNum(1, 4);
-        player.addRandomItems(countItem);
-        dealer.addRandomItems(countItem);
-    }
+    int countItem = rGetNum(1, 4);
+    player.addRandomItems(countItem);
+    dealer.addRandomItems(countItem);
 
     shotgun.loading(rGetNum(2, 8));
     shotgun.displayMagazineContents();
@@ -55,7 +52,7 @@ void Session::start() {
         if (shotgun.isEmpty()) {
             object = &dealer;
             subject = &player;
-            int countItem = rGetNum(1, 4);
+            countItem = rGetNum(1, 4);
             player.addRandomItems(countItem);
             dealer.addRandomItems(countItem);
             shotgun.loading(rGetNum(2, 8));
@@ -101,5 +98,5 @@ void Session::setDealer(Player& dealer) {
 }
 
 void Session::setPlayer(Player& player) {
-    this->player = dealer;
+    this->player = player;
 }
