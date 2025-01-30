@@ -14,7 +14,10 @@ void Adrenaline::use() {
         int index = getCorrectInt(0, itemCount - 1);
         Item* item = target->getItem()[index];
         item->setOwner(*owner);
-        target->useItem(index);
+        if (item->getItemType() != ADRENALINE)
+            target->useItem(index);
+        else
+            std::cout << "\nYou are already under the effect of \"Adrenaline\"\n\n";
         item->setOwner(*target);
     }
 }
