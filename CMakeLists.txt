@@ -3,9 +3,15 @@ project(Buckshot_Roulette)
 
 set(CMAKE_CXX_STANDARD 23)
 
-set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -static")
+set(wxWidgets_ROOT_DIR "D:/wxWidgets-3.2.6")
+set(wxWidgets_LIB_DIR "D:/wxWidgets-3.2.6/lib/gcc_lib")
 
-add_executable(Buckshot_Roulette
+find_package(wxWidgets REQUIRED COMPONENTS net core base)
+if(wxWidgets_USE_FILE) # not defined in CONFIG mode
+    include(${wxWidgets_USE_FILE})
+endif()
+
+add_executable(Buckshot_Roulette WIN32
         src/items/item.cpp
         src/main.cpp
         src/random.cpp
@@ -33,4 +39,10 @@ add_executable(Buckshot_Roulette
         src/items/saw.h
         src/items/phone.cpp
         src/items/phone.h
+        src/myFrame.cpp
+        src/myFrame.h
 )
+
+target_link_libraries(Buckshot_Roulette ${wxWidgets_LIBRARIES})
+
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -static")
