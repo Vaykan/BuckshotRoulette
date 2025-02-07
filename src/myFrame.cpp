@@ -25,7 +25,7 @@ MyFrame::MyFrame() : wxFrame(NULL, wxID_ANY, "Buckshot Roulette") {
     sizer->Add(sizerText, 0, wxALIGN_CENTER | wxALL, 5);
 
     wxButton* shootButton = new wxButton(panel, wxID_ANY, wxT("Shoot"));
-    wxButton* shootYourselfButton = new wxButton(panel, wxID_ANY, wxT("Shoot Yoursel"));
+    wxButton* shootYourselfButton = new wxButton(panel, wxID_ANY, wxT("Shoot Yourself"));
 
     sizerMiddleButton->Add(shootButton, 0, wxALIGN_CENTER | wxALL, 5);
     sizerMiddleButton->Add(shootYourselfButton, 0, wxALIGN_CENTER | wxALL, 5);
