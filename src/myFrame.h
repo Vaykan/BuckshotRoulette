@@ -7,9 +7,20 @@
 #include <wx/sizer.h>
 #include <wx/textctrl.h>
 
+#include "session.h"
+#include "player.h"
+
 class MyFrame : public wxFrame {
+    Session& session;
+
+    void updateButtonName(wxButton& button);
+
 public:
-    MyFrame();
+    MyFrame(Session& session);
+
+    void setSession(Session& session);
+
+    void OnAnyButtonClicked(wxCommandEvent& event);
 };
 
 #endif

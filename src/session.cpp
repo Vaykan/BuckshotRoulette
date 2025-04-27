@@ -22,11 +22,8 @@ void Session::config() {
         i->setOwner(player);
     }
     player.setArrayItemSize(8);
-}
 
-void Session::start() {
-    Player* object;
-    Player* subject;
+    //set from start()
 
     object = &dealer;
     subject = &player;
@@ -39,6 +36,23 @@ void Session::start() {
     dealer.addRandomItems(countItem);
 
     shotgun.loading(rGetNum(2, 8));
+
+}
+
+void Session::start() {
+    // copy that in config()
+    object = &dealer;
+    subject = &player;
+
+    dealer.setHitPoint(4);
+    player.setHitPoint(4);
+
+    int countItem = rGetNum(1, 4);
+    player.addRandomItems(countItem);
+    dealer.addRandomItems(countItem);
+
+    shotgun.loading(rGetNum(2, 8));
+    // copy that in config()
     shotgun.displayMagazineContents();
 
     while (player.getHitPoint() && dealer.getHitPoint()) {
@@ -99,4 +113,20 @@ void Session::setDealer(Player& dealer) {
 
 void Session::setPlayer(Player& player) {
     this->player = player;
+}
+
+Player& Session::getDealer() {
+    return dealer;
+}
+
+Player& Session::getPlayer() {
+    return player;
+}
+
+Player& Session::getObject(){
+    return *object;
+}
+
+Player& Session::getSubject() {
+    return *subject;
 }

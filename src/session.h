@@ -22,6 +22,8 @@ class Shotgun;
 class Session {
 private:
     Player dealer, player;
+    Player* object;
+    Player* subject;
     Shotgun shotgun;
 public:
     void config();
@@ -31,6 +33,11 @@ public:
 
     void setDealer(Player& dealer);
     void setPlayer(Player& player);
+
+    Player& getDealer();
+    Player& getPlayer();
+    Player& getObject();
+    Player& getSubject();
 };
 
 #endif

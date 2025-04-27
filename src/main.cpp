@@ -5,6 +5,7 @@
 #endif
 
 #include "myFrame.h"
+#include "session.h"
 
 class Main : public wxApp {
 public:
@@ -14,7 +15,10 @@ public:
 wxIMPLEMENT_APP(Main);
 
 bool Main::OnInit() {
-    MyFrame* myFrame = new MyFrame;
+    Session session;
+    session.config();
+
+    MyFrame* myFrame = new MyFrame(session);
     myFrame->Show(true);
     return true;
 }
