@@ -11,9 +11,11 @@
 #include "player.h"
 
 class MyFrame : public wxFrame {
+    static constexpr int BUTTON_ITEM = 8;
     Session& session;
-
-    void updateButtonName(wxButton& button);
+    std::array<wxButton*, BUTTON_ITEM> objectItemSlot = {};
+    std::array<wxButton*, BUTTON_ITEM> subjectItemSlot = {};
+    void updateAllButtonName();
 
 public:
     MyFrame(Session& session);

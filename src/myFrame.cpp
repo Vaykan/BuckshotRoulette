@@ -9,7 +9,6 @@ MyFrame::MyFrame(Session& session) : wxFrame(NULL, wxID_ANY, "Buckshot Roulette"
     wxBoxSizer* sizerMiddleButton = new wxBoxSizer(wxHORIZONTAL);
     wxBoxSizer* sizerDownButton = new wxBoxSizer(wxHORIZONTAL);
 
-    wxButton* objectItemSlot[8];
     for (auto& i : objectItemSlot) {
         i = new wxButton(panel, wxID_ANY, wxT("ADRENALINE"));
         sizerUpButton->Add(i, 0, wxALIGN_CENTER | wxALL, 5);
@@ -32,12 +31,13 @@ MyFrame::MyFrame(Session& session) : wxFrame(NULL, wxID_ANY, "Buckshot Roulette"
 
     sizer->Add(sizerMiddleButton, 0, wxALIGN_CENTER | wxALL, 5);
 
-   std::array<wxButton*, 8> subjectItemSlot = {};
     for (int i = 0; i < subjectItemSlot.size(); ++i) {
-        subjectItemSlot[i] = new wxButton(panel, i, wxT("ADRENALINE"));
+        subjectItemSlot[i] = new wxButton(panel, i);
         subjectItemSlot[i]->Bind(wxEVT_BUTTON, &MyFrame::OnAnyButtonClicked, this);
         sizerDownButton->Add(subjectItemSlot[i], 0, wxALIGN_CENTER | wxALL, 5);
     }
+
+    updateAllButtonName();
 
     sizer->Add(sizerDownButton, 0, wxALIGN_CENTER | wxALL, 5);
 
@@ -49,11 +49,10 @@ MyFrame::MyFrame(Session& session) : wxFrame(NULL, wxID_ANY, "Buckshot Roulette"
 void MyFrame::OnAnyButtonClicked(wxCommandEvent& event) {
     Player* subject = &session.getSubject();
     int buttonID = event.GetId();
-    wxButton* button = static_cast<wxButton*>(event.GetEventObject());
 
-    if(subject->getItemCount() > buttonID){
+    if (subject->getItemCount() > buttonID) {
         subject->useItem(buttonID);
-        updateButtonName(*button);
+        updateAllButtonName();
     }
 }
 
@@ -61,7 +60,19 @@ void MyFrame::setSession(Session& session) {
     this->session = session;
 }
 
-void MyFrame::updateButtonName(wxButton& button) {
-    Player* subject = &session.getSubject();
-    button.SetLabel(subject->getItem()[button.GetId()]->getName());
+void MyFrame::updateAllButtonName() {
+    for (int i = 0; i < subjectItemSlot.size(); i++) {
+        if (session.getSubject().getItemCount() > i) {
+            subjectItemSlot[i]->SetLabel(session.getSubject().getItem()[i]->getName());
+        } else {
+            subjectItemSlot[i]->SetLabel(" ");
+        }
+    }
+    for (int i = 0; i < objectItemSlot.size(); i++) {
+        if (session.getObject().getItemCount() > i) {
+            objectItemSlot[i]->SetLabel(session.getObject().getItem()[i]->getName());
+        } else {
+            objectItemSlot[i]->SetLabel(" ");
+        }
+    }
 }

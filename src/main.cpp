@@ -15,10 +15,10 @@ public:
 wxIMPLEMENT_APP(Main);
 
 bool Main::OnInit() {
-    Session session;
-    session.config();
+    Session* session = new Session;
+    session->config();
 
-    MyFrame* myFrame = new MyFrame(session);
+    MyFrame* myFrame = new MyFrame(*session);
     myFrame->Show(true);
     return true;
 }
