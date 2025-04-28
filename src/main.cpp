@@ -19,6 +19,7 @@ bool Main::OnInit() {
     session->config();
 
     MyFrame* myFrame = new MyFrame(*session);
+    session->setMyFrame(*myFrame);
     myFrame->Show(true);
     return true;
 }

@@ -76,28 +76,21 @@ void Session::start() {
         }
     }
     if (!player.getHitPoint())
-        std::cout << "\nPlayer dead\n";
+        myFrame->getTextCtrl()->AppendText("\nPlayer dead\n");
     else if (!dealer.getHitPoint())
-        std::cout << "\nDealer dead\n\n";
-
+        myFrame->getTextCtrl()->AppendText("\nDealer dead\n\n");
 }
 
 void Session::giveTurn(Player& subject) {
     subject.getStats();
     subject.getTarget()->getStats();
-    std::cout << "Enter\n0 - Shot\n1 - Use Item\nInput:";
     while (getInputBool() && subject.getItemCount()) {
         subject.getStats();
         subject.getTarget()->getStats();
-        std::cout << "Enter number item\nInput:";
         subject.useItem(getCorrectInt(0, subject.getItemCount() - 1));
         if (player.isDead() || dealer.isDead() || shotgun.isEmpty())
             return;
-        std::cout << "Enter\n0 - Shoot\n1 - Use Item\nInput:";
-        std::cout << "\n\n";
     }
-    std::cout << "\n\n";
-    std::cout << "Enter\n0 - Shoot Yourself\n1 - Shoot " << subject.getTarget()->getName() << "\nInput: ";
     if (getInputBool()) {
         shotgun.shoot(subject.getTarget());
     } else {
@@ -129,4 +122,12 @@ Player& Session::getObject(){
 
 Player& Session::getSubject() {
     return *subject;
+}
+
+void Session::setMyFrame(MyFrame& myFrame) {
+    this->myFrame = &myFrame;
+}
+
+MyFrame* Session::getMyFrame() {
+    return myFrame;
 }

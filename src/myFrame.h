@@ -6,21 +6,30 @@
 #include <wx/button.h>
 #include <wx/sizer.h>
 #include <wx/textctrl.h>
+#include <wx/stattext.h>
+
 
 #include "session.h"
 #include "player.h"
 
+class Session;
+
 class MyFrame : public wxFrame {
     static constexpr int BUTTON_ITEM = 8;
-    Session& session;
+    Session* session;
+
     std::array<wxButton*, BUTTON_ITEM> objectItemSlot = {};
     std::array<wxButton*, BUTTON_ITEM> subjectItemSlot = {};
-    void updateAllButtonName();
+    wxTextCtrl* textCtrl = nullptr;
+    wxStaticText* objectHpText = nullptr;
+    wxStaticText* subjectHpText = nullptr;
 
+
+    void updateAllButtonName();
 public:
     MyFrame(Session& session);
 
-    void setSession(Session& session);
+    wxTextCtrl* getTextCtrl();
 
     void OnAnyButtonClicked(wxCommandEvent& event);
 };

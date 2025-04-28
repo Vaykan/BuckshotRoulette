@@ -4,6 +4,7 @@
 #include "player.h"
 #include "shotgun.h"
 #include "input.h"
+#include "myFrame.h"
 
 #include "items/item.h"
 #include "items/pill.h"
@@ -18,6 +19,7 @@
 
 class Player;
 class Shotgun;
+class MyFrame;
 
 class Session {
 private:
@@ -25,6 +27,8 @@ private:
     Player* object;
     Player* subject;
     Shotgun shotgun;
+
+    MyFrame* myFrame = nullptr;
 public:
     void config();
     void start();
@@ -38,6 +42,9 @@ public:
     Player& getPlayer();
     Player& getObject();
     Player& getSubject();
+
+    void setMyFrame(MyFrame& myFrame);
+    MyFrame* getMyFrame();
 };
 
 #endif
