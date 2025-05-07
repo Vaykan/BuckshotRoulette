@@ -41,6 +41,8 @@ void Session::config() {
 
 void Session::start() {
     // copy that in config()
+    // |
+    // v
     object = &dealer;
     subject = &player;
 
@@ -52,6 +54,8 @@ void Session::start() {
     dealer.addRandomItems(countItem);
 
     shotgun.loading(rGetNum(2, 8));
+    // ^
+    // |
     // copy that in config()
     shotgun.displayMagazineContents();
 

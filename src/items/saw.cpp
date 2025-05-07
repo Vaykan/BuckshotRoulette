@@ -6,6 +6,7 @@ Saw::Saw() {
 }
 
 void Saw::use() {
-    std::cout << owner->getName() << " used Saw\n\n";
+    owner->getMyFrame()->getTextCtrl()->AppendText(owner->getName());
+    owner->getMyFrame()->getTextCtrl()->AppendText(" used Saw\n\n");
     owner->getShotgun()->setDoubleDamage(true);
 }

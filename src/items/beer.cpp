@@ -6,6 +6,7 @@ Beer::Beer() {
 }
 
 void Beer::use() {
-    std::cout << owner->getName() << " used Beer\n\n";
+    owner->getMyFrame()->getTextCtrl()->AppendText(owner->getName());
+    owner->getMyFrame()->getTextCtrl()->AppendText(" used Beer\n\n");
     owner->getShotgun()->pumping();
 }

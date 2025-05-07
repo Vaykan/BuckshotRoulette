@@ -1,7 +1,5 @@
 #include "player.h"
 
-#include <utility>
-
 Player::Player() {
     skipReason.reserve(2);
 }
@@ -139,4 +137,12 @@ void Player::setIsHandcuffed(bool isHandcuffed) {
 void Player::decreaseSkipTurn() {
     if (!skipReason.empty())
         skipReason.pop_back();
+}
+
+void Player::setMyFrame(MyFrame& myFrame) {
+    this->myFrame = &myFrame;
+}
+
+MyFrame* Player::getMyFrame() {
+    return myFrame;
 }

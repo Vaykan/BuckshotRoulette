@@ -6,6 +6,7 @@ Cigarette::Cigarette() {
 }
 
 void Cigarette::use() {
-    std::cout << owner->getName() << " used Cigarette, restoring 1 HP\n\n";
+    owner->getMyFrame()->getTextCtrl()->AppendText(owner->getName());
+    owner->getMyFrame()->getTextCtrl()->AppendText(" used Cigarette, restoring 1 HP\n\n");
     owner->changeHitPoint(1);
 }

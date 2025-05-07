@@ -17,9 +17,10 @@ wxIMPLEMENT_APP(Main);
 bool Main::OnInit() {
     Session* session = new Session;
     session->config();
-
     MyFrame* myFrame = new MyFrame(*session);
     session->setMyFrame(*myFrame);
+    session->getDealer().setMyFrame(*myFrame);
+    session->getPlayer().setMyFrame(*myFrame);
     myFrame->Show(true);
     return true;
 }

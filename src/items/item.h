@@ -5,13 +5,11 @@
 #include "../player.h"
 #include "../random.h"
 #include "../input.h"
-
-class Player;
+#include "../myFrame.h"
 
 class Item {
 protected:
     Item();
-
     std::string name;
     ItemType itemType;
 

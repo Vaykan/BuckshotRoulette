@@ -1,5 +1,8 @@
 #include "myFrame.h"
 
+#include "session.h"
+#include "player.h"
+
 MyFrame::MyFrame(Session& session) : wxFrame(NULL, wxID_ANY, "Buckshot Roulette"), session(&session){
     wxPanel* panel = new wxPanel(this, wxID_ANY);
 
@@ -45,7 +48,6 @@ MyFrame::MyFrame(Session& session) : wxFrame(NULL, wxID_ANY, "Buckshot Roulette"
         subjectItemSlot[i]->Bind(wxEVT_BUTTON, &MyFrame::OnAnyButtonClicked, this);
         sizerDownButton->Add(subjectItemSlot[i], 0, wxALIGN_CENTER | wxALL, 5);
     }
-
     updateAllButtonName();
 
     sizer->Add(sizerDownButton, 0, wxALIGN_CENTER | wxALL, 5);

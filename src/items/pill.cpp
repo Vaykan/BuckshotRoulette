@@ -7,10 +7,12 @@ Pill::Pill() {
 
 void Pill::use() {
     if (rGetRandBit()) {
+        owner->getMyFrame()->getTextCtrl()->AppendText(owner->getName());
+        owner->getMyFrame()->getTextCtrl()->AppendText(" used Pill, restoring 2 HP\n\n");
         owner->changeHitPoint(2);
-        std::cout << owner->getName() << " used Pill, restoring 2 HP\n\n";
     } else {
+        owner->getMyFrame()->getTextCtrl()->AppendText(owner->getName());
+        owner->getMyFrame()->getTextCtrl()->AppendText(" used Pill, losing 1 HP\n\n");
         owner->changeHitPoint(-1);
-        std::cout << owner->getName() << " used Pill, losing 1 HP\n\n";
     }
 }

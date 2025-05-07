@@ -8,11 +8,8 @@
 #include <wx/textctrl.h>
 #include <wx/stattext.h>
 
-
-#include "session.h"
-#include "player.h"
-
 class Session;
+class Player;
 
 class MyFrame : public wxFrame {
     static constexpr int BUTTON_ITEM = 8;

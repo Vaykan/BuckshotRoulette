@@ -6,15 +6,19 @@ Phone::Phone() {
 }
 
 void Phone::use() {
-    std::cout << owner->getName() << " used Phone\n\n";
+    owner->getMyFrame()->getTextCtrl()->AppendText(owner->getName());
+    owner->getMyFrame()->getTextCtrl()->AppendText(" used Phone\n\n");
     std::vector<ShellType>* magazine = &owner->getShotgun()->getMagazine();
     if (magazine->size() >= 2) {
         int index = rGetNum(1, magazine->size() - 1);
-        if ((*magazine)[index] == LIVE)
-            std::cout << index + 1 << " shell LIVE\n\n";
-        else
-            std::cout << index + 1 << " shell BLANK\n\n";
+        if ((*magazine)[index] == LIVE) {
+            owner->getMyFrame()->getTextCtrl()->AppendText(std::to_string(index + 1));
+            owner->getMyFrame()->getTextCtrl()->AppendText(" shell LIVE\n\n");
+        } else {
+            owner->getMyFrame()->getTextCtrl()->AppendText(std::to_string(index + 1));
+            owner->getMyFrame()->getTextCtrl()->AppendText(" shell BLANK\n\n");
+        }
     } else {
-        std::cout << "How Unfortunate...\n\n";
+        owner->getMyFrame()->getTextCtrl()->AppendText("How Unfortunate...\n\n");
     }
 }

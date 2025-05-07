@@ -9,6 +9,7 @@
 
 class Item;
 class Shotgun;
+class MyFrame;
 
 class Player {
 private:
@@ -25,6 +26,8 @@ private:
 
     Shotgun* shotgun;
     Player* target;
+
+    MyFrame* myFrame = nullptr;
 public:
     Player();
     ~Player();
@@ -65,6 +68,9 @@ public:
     void decreaseSkipTurn();
     bool isSkipTurn() const;
     std::string getReasonSkipTurn();
+
+    void setMyFrame(MyFrame& myFrame);
+    MyFrame* getMyFrame();
 };
 
 #endif
