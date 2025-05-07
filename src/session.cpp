@@ -5,8 +5,8 @@ void Session::config() {
     dealer.setTarget(player);
     dealer.setShotgun(shotgun);
     dealer.setMaxHitPoint(4);
-    dealer.setItemStorage({new Pill(), new Cigarette(), new Beer(), new Adrenaline(), new Magnifier(), new Handcuffs(),
-                           new Inverter(), new Saw(), new Phone()});
+    dealer.setItemStorage({new Pill(), new Cigarette(), new Beer(), new Magnifier(), new Handcuffs(),
+                           new Inverter(), new Saw(), new Phone(), new Adrenaline()});
     for (auto& i: dealer.getItemStorage()) {
         i->setOwner(dealer);
     }
@@ -16,8 +16,8 @@ void Session::config() {
     player.setTarget(dealer);
     player.setShotgun(shotgun);
     player.setMaxHitPoint(4);
-    player.setItemStorage({new Pill(), new Cigarette(), new Beer(), new Adrenaline(), new Magnifier(), new Handcuffs(),
-                           new Inverter(), new Saw(), new Phone()});
+    player.setItemStorage({new Pill(), new Cigarette(), new Beer(), new Magnifier(), new Handcuffs(),
+                           new Inverter(), new Saw(), new Phone(), new Adrenaline()});
     for (auto& i: player.getItemStorage()) {
         i->setOwner(player);
     }
