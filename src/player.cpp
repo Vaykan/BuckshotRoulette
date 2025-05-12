@@ -43,8 +43,6 @@ void Player::setShotgun(Shotgun& shotgun) {
     this->shotgun = &shotgun;
 }
 
-#include "items/pill.h"
-
 void Player::addRandomItems(int count) {
     if (count > maxItem - item.size()) count = maxItem - item.size();
 
