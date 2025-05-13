@@ -48,7 +48,7 @@ MyFrame::MyFrame(Session& session) : wxFrame(NULL, wxID_ANY, "Buckshot Roulette"
         subjectItemSlot[i]->Bind(wxEVT_BUTTON, &MyFrame::OnAnyButtonClicked, this);
         sizerDownButton->Add(subjectItemSlot[i], 0, wxALIGN_CENTER | wxALL, 5);
     }
-    updateAllButtonName();
+    updateAllButtonText();
 
     sizer->Add(sizerDownButton, 0, wxALIGN_CENTER | wxALL, 5);
 
@@ -63,11 +63,12 @@ void MyFrame::OnAnyButtonClicked(wxCommandEvent& event) {
 
     if (subject->getItemCount() > buttonID) {
         subject->useItem(buttonID);
-        updateAllButtonName();
+        updateAllButtonText();
+        updateHpStaticText();
     }
 }
 
-void MyFrame::updateAllButtonName() {
+void MyFrame::updateAllButtonText() {
     for (int i = 0; i < subjectItemSlot.size(); i++) {
         if (session->getSubject().getItemCount() > i) {
             subjectItemSlot[i]->SetLabel(session->getSubject().getItem()[i]->getName());
@@ -86,4 +87,9 @@ void MyFrame::updateAllButtonName() {
 
 wxTextCtrl* MyFrame::getTextCtrl() {
     return textCtrl;
+}
+
+void MyFrame::updateHpStaticText() {
+    objectHpText->SetLabel(std::to_string(session->getObject().getHitPoint()));
+    subjectHpText->SetLabel(std::to_string(session->getSubject().getHitPoint()));
 }
