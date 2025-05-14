@@ -14,7 +14,7 @@ MyFrame::MyFrame(Session& session) : wxFrame(NULL, wxID_ANY, "Buckshot Roulette"
     wxBoxSizer* sizerHpSubject = new wxBoxSizer(wxHORIZONTAL);
     wxBoxSizer* sizerDownButton = new wxBoxSizer(wxHORIZONTAL);
 
-    objectHpText = new wxStaticText(panel, wxID_ANY, "100 hp");
+    objectHpText = new wxStaticText(panel, wxID_ANY, "");
     sizerHpObject->Add(objectHpText, 0, wxALIGN_CENTER | wxALL, 5);
     sizer->Add(sizerHpObject, 0, wxALIGN_CENTER | wxALL, 5);
     for (auto& i : objectItemSlot) {
@@ -39,7 +39,7 @@ MyFrame::MyFrame(Session& session) : wxFrame(NULL, wxID_ANY, "Buckshot Roulette"
 
     sizer->Add(sizerMiddleButton, 0, wxALIGN_CENTER | wxALL, 5);
 
-    subjectHpText = new wxStaticText(panel, wxID_ANY, "100 hp");
+    subjectHpText = new wxStaticText(panel, wxID_ANY, "");
     sizerHpSubject->Add(subjectHpText, 0, wxALIGN_CENTER | wxALL, 5);
     sizer->Add(sizerHpSubject, 0, wxALIGN_CENTER | wxALL, 5);
 
@@ -49,7 +49,7 @@ MyFrame::MyFrame(Session& session) : wxFrame(NULL, wxID_ANY, "Buckshot Roulette"
         sizerDownButton->Add(subjectItemSlot[i], 0, wxALIGN_CENTER | wxALL, 5);
     }
     updateAllButtonText();
-
+    updateHpStaticText();
     sizer->Add(sizerDownButton, 0, wxALIGN_CENTER | wxALL, 5);
 
     panel->SetSizerAndFit(sizer);
