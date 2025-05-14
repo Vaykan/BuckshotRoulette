@@ -31,12 +31,13 @@ void Session::start() {
     object = &dealer;
     subject = &player;
 
-    dealer.setHitPoint(4);
-    player.setHitPoint(4);
+    int randomCount = rGetNum(2, 4);
+    dealer.setHitPoint(randomCount);
+    player.setHitPoint(randomCount);
 
-    int countItem = rGetNum(1, 4);
-    player.addRandomItems(countItem);
-    dealer.addRandomItems(countItem);
+    randomCount = rGetNum(1, 4);
+    player.addRandomItems(randomCount);
+    dealer.addRandomItems(randomCount);
 
     shotgun.loading(rGetNum(2, 8));
     shotgun.displayMagazineContents();
@@ -52,9 +53,9 @@ void Session::start() {
         if (shotgun.isEmpty()) {
             object = &dealer;
             subject = &player;
-            countItem = rGetNum(1, 4);
-            player.addRandomItems(countItem);
-            dealer.addRandomItems(countItem);
+            randomCount = rGetNum(1, 4);
+            player.addRandomItems(randomCount);
+            dealer.addRandomItems(randomCount);
             shotgun.loading(rGetNum(2, 8));
             shotgun.displayMagazineContents();
         } else {
