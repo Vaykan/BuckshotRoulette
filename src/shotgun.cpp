@@ -1,15 +1,16 @@
 #include "shotgun.h"
+#include "session.h"
 
 void Shotgun::shoot(Player* target) {
-    std::cout << "\n\n";
+    session->getMyFrame()->getTextCtrl()->AppendText("\n\n");
     if (magazine.back() == LIVE) {
-        std::cout << "SHOT!\n";
+        session->getMyFrame()->getTextCtrl()->AppendText("SHOT!\n");
         if (doubleDamage)
             target->changeHitPoint(-2);
         else
             target->changeHitPoint(-1);
     } else {
-        std::cout << "CLICK!\n";
+        session->getMyFrame()->getTextCtrl()->AppendText("CLICK!\n");
     }
     pumping();
     doubleDamage = false;
@@ -17,11 +18,11 @@ void Shotgun::shoot(Player* target) {
 
 void Shotgun::pumping() {
     if (magazine.back() == LIVE)
-        std::cout << "LIVE shell ejected\n";
+        session->getMyFrame()->getTextCtrl()->AppendText("LIVE shell ejected\n");
     else
-        std::cout << "BLANK shell ejected\n";
+        session->getMyFrame()->getTextCtrl()->AppendText("BLANK shell ejected\n");
     magazine.pop_back();
-    std::cout << "\n\n";
+    session->getMyFrame()->getTextCtrl()->AppendText("\n\n");
 }
 
 void Shotgun::loading(int count) {
@@ -55,9 +56,9 @@ void Shotgun::displayMagazineContents() {
         else
             blank++;
     }
-    std::cout << "Shotgun loaded:\n"
-              << live << " Live\n"
-              << blank << " Blank\n\n";
+    session->getMyFrame()->getTextCtrl()->AppendText("Shotgun loaded:\n");
+    session->getMyFrame()->getTextCtrl()->AppendText(" Live\n");
+    session->getMyFrame()->getTextCtrl()->AppendText(" Blank\n\n");
 }
 
 ShellType& Shotgun::getBackShell() {
@@ -74,4 +75,12 @@ bool Shotgun::isDoubleDamage() const {
 
 void Shotgun::setDoubleDamage(bool doubleDamage) {
     this->doubleDamage = doubleDamage;
+}
+
+void Shotgun::setSession(Session& session) {
+    this->session = &session;
+}
+
+Session* Shotgun::getSession() {
+    return session;
 }

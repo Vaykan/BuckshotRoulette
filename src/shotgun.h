@@ -9,11 +9,12 @@
 #include "player.h"
 
 class Player;
+class Session;
 
 class Shotgun {
 private:
     bool doubleDamage = false;
-
+    Session* session = nullptr;
     std::vector<ShellType> magazine;
 public:
     void setDoubleDamage(bool doubleDamage);
@@ -28,6 +29,9 @@ public:
     bool isEmpty();
     ShellType& getBackShell();
     std::vector<ShellType>& getMagazine();
+
+    void setSession(Session& session);
+    Session* getSession();
 };
 
 #endif
