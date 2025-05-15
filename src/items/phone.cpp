@@ -12,11 +12,13 @@ void Phone::use() {
     if (magazine->size() >= 2) {
         int index = rGetNum(1, magazine->size() - 1);
         if ((*magazine)[index] == LIVE) {
+            owner->getMyFrame()->getTextCtrl()->AppendText("Shell ");
             owner->getMyFrame()->getTextCtrl()->AppendText(std::to_string(index + 1));
-            owner->getMyFrame()->getTextCtrl()->AppendText(" shell LIVE\n\n");
+            owner->getMyFrame()->getTextCtrl()->AppendText(" is LIVE\n\n");
         } else {
+            owner->getMyFrame()->getTextCtrl()->AppendText("Shell ");
             owner->getMyFrame()->getTextCtrl()->AppendText(std::to_string(index + 1));
-            owner->getMyFrame()->getTextCtrl()->AppendText(" shell BLANK\n\n");
+            owner->getMyFrame()->getTextCtrl()->AppendText(" is BLANK\n\n");
         }
     } else {
         owner->getMyFrame()->getTextCtrl()->AppendText("How Unfortunate...\n\n");

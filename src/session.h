@@ -45,6 +45,8 @@ public:
 
     void setMyFrame(MyFrame& myFrame);
     MyFrame* getMyFrame();
+
+    void displayShotgunMagazineContents();
 };
 
 #endif

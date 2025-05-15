@@ -41,45 +41,25 @@ void Session::config() {
 }
 
 void Session::start() {
-    // copy that in config()
-    // |
-    // v
-    object = &dealer;
-    subject = &player;
-
-    int randomCount = rGetNum(2, 4);
-    dealer.setHitPoint(randomCount);
-    player.setHitPoint(randomCount);
-
-    int countItem = rGetNum(1, 4);
-    player.addRandomItems(countItem);
-    dealer.addRandomItems(countItem);
-
-    shotgun.loading(rGetNum(2, 8));
-    // ^
-    // |
-    // copy that in config()
-    shotgun.displayMagazineContents();
-
-    while (player.getHitPoint() && dealer.getHitPoint()) {
-        if (subject->isSkipTurn()) {
-            std::cout << subject->getReasonSkipTurn();
-            subject->decreaseSkipTurn();
-        } else {
-            subject->setIsHandcuffed(false);
-            giveTurn(*subject);
-        }
-        if (shotgun.isEmpty()) {
-            object = &dealer;
-            subject = &player;
-            randomCount = rGetNum(1, 4);
-            player.addRandomItems(randomCount);
-            dealer.addRandomItems(randomCount);
-            shotgun.loading(rGetNum(2, 8));
-            shotgun.displayMagazineContents();
-        } else {
-            std::swap(object, subject);
-        }
+//    shotgun.displayMagazineContents();
+    int randomCount;
+    if (subject->isSkipTurn()) {
+        std::cout << subject->getReasonSkipTurn();
+        subject->decreaseSkipTurn();
+    } else {
+        subject->setIsHandcuffed(false);
+        giveTurn(*subject);
+    }
+    if (shotgun.isEmpty()) {
+        object = &dealer;
+        subject = &player;
+        randomCount = rGetNum(1, 4);
+        player.addRandomItems(randomCount);
+        dealer.addRandomItems(randomCount);
+        shotgun.loading(rGetNum(2, 8));
+        shotgun.displayMagazineContents();
+    } else {
+        std::swap(object, subject);
     }
     if (!player.getHitPoint())
         myFrame->getTextCtrl()->AppendText("\nPlayer dead\n");
@@ -136,4 +116,8 @@ void Session::setMyFrame(MyFrame& myFrame) {
 
 MyFrame* Session::getMyFrame() {
     return myFrame;
+}
+
+void Session::displayShotgunMagazineContents() {
+    shotgun.displayMagazineContents();
 }

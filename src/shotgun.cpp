@@ -57,7 +57,9 @@ void Shotgun::displayMagazineContents() {
             blank++;
     }
     session->getMyFrame()->getTextCtrl()->AppendText("Shotgun loaded:\n");
+    session->getMyFrame()->getTextCtrl()->AppendText(std::to_string(live));
     session->getMyFrame()->getTextCtrl()->AppendText(" Live\n");
+    session->getMyFrame()->getTextCtrl()->AppendText(std::to_string(blank));
     session->getMyFrame()->getTextCtrl()->AppendText(" Blank\n\n");
 }
 

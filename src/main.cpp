@@ -21,6 +21,7 @@ bool Main::OnInit() {
     session->setMyFrame(*myFrame);
     session->getDealer().setMyFrame(*myFrame);
     session->getPlayer().setMyFrame(*myFrame);
+    session->displayShotgunMagazineContents();
     myFrame->Show(true);
     return true;
 }
