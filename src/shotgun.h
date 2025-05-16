@@ -13,10 +13,13 @@ class Session;
 
 class Shotgun {
 private:
+    ShellType previousShellType;
     bool doubleDamage = false;
     Session* session = nullptr;
     std::vector<ShellType> magazine;
 public:
+    ShellType getPreviousShellType();
+
     void setDoubleDamage(bool doubleDamage);
     bool isDoubleDamage() const;
 

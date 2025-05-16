@@ -4,12 +4,14 @@
 void Shotgun::shoot(Player* target) {
     session->getMyFrame()->getTextCtrl()->AppendText("\n\n");
     if (magazine.back() == LIVE) {
+        previousShellType = LIVE;
         session->getMyFrame()->getTextCtrl()->AppendText("SHOT!\n");
         if (doubleDamage)
             target->changeHitPoint(-2);
         else
             target->changeHitPoint(-1);
     } else {
+        previousShellType = BLANK;
         session->getMyFrame()->getTextCtrl()->AppendText("CLICK!\n");
     }
     pumping();
@@ -85,4 +87,8 @@ void Shotgun::setSession(Session& session) {
 
 Session* Shotgun::getSession() {
     return session;
+}
+
+ShellType Shotgun::getPreviousShellType() {
+    return previousShellType;
 }

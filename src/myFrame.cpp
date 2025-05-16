@@ -31,8 +31,10 @@ MyFrame::MyFrame(Session& session) : wxFrame(NULL, wxID_ANY, "Buckshot Roulette"
 
     sizer->Add(sizerText, 0, wxALIGN_CENTER | wxALL, 5);
 
-    wxButton* shootButton = new wxButton(panel, wxID_ANY, wxT("Shoot"));
-    wxButton* shootYourselfButton = new wxButton(panel, wxID_ANY, wxT("Shoot Yourself"));
+    shootButton = new wxButton(panel, wxID_ANY, wxT("Shoot"));
+    shootButton->Bind(wxEVT_BUTTON, &MyFrame::OnShootButtonClicked, this);
+    shootYourselfButton = new wxButton(panel, wxID_ANY, wxT("Shoot Yourself"));
+    shootYourselfButton->Bind(wxEVT_BUTTON, &MyFrame::OnShootYourselfButtonClicked, this);
 
     sizerMiddleButton->Add(shootButton, 0, wxALIGN_CENTER | wxALL, 5);
     sizerMiddleButton->Add(shootYourselfButton, 0, wxALIGN_CENTER | wxALL, 5);
@@ -45,7 +47,7 @@ MyFrame::MyFrame(Session& session) : wxFrame(NULL, wxID_ANY, "Buckshot Roulette"
 
     for (int i = 0; i < subjectItemSlot.size(); ++i) {
         subjectItemSlot[i] = new wxButton(panel, i);
-        subjectItemSlot[i]->Bind(wxEVT_BUTTON, &MyFrame::OnAnyButtonClicked, this);
+        subjectItemSlot[i]->Bind(wxEVT_BUTTON, &MyFrame::OnItemButtonClicked, this);
         sizerDownButton->Add(subjectItemSlot[i], 0, wxALIGN_CENTER | wxALL, 5);
     }
     updateAllButtonText();
@@ -57,16 +59,33 @@ MyFrame::MyFrame(Session& session) : wxFrame(NULL, wxID_ANY, "Buckshot Roulette"
     SetSizeHints(850, 490);
 }
 
-void MyFrame::OnAnyButtonClicked(wxCommandEvent& event) {
+void MyFrame::OnItemButtonClicked(wxCommandEvent& event) {
     Player* subject = &session->getSubject();
     int buttonID = event.GetId();
 
     if (subject->getItemCount() > buttonID) {
         subject->useItem(buttonID);
+        session->checkTurn();
         updateAllButtonText();
         updateHpStaticText();
     }
 }
+
+void MyFrame::OnShootButtonClicked(wxCommandEvent& event) {
+    session->shootTarget();
+    session->swapTurn();
+    updateAllButtonText();
+    updateHpStaticText();
+}
+
+void MyFrame::OnShootYourselfButtonClicked(wxCommandEvent& event) {
+    session->shootYourself();
+    session->checkTurn(true);
+    updateAllButtonText();
+    updateHpStaticText();
+}
+
+
 
 void MyFrame::updateAllButtonText() {
     for (int i = 0; i < subjectItemSlot.size(); i++) {
@@ -93,3 +112,4 @@ void MyFrame::updateHpStaticText() {
     objectHpText->SetLabel(std::to_string(session->getObject().getHitPoint()));
     subjectHpText->SetLabel(std::to_string(session->getSubject().getHitPoint()));
 }
+

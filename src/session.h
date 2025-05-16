@@ -33,7 +33,14 @@ public:
     void config();
     void start();
 
+    void shootTarget();
+    void shootYourself();
+
+
     void giveTurn(Player& subject);
+
+    void checkTurn(bool shootYourself = false);
+    void swapTurn();
 
     void setDealer(Player& dealer);
     void setPlayer(Player& player);
@@ -45,6 +52,8 @@ public:
 
     void setMyFrame(MyFrame& myFrame);
     MyFrame* getMyFrame();
+
+    ShellType getPreviousShellType();
 
     void displayShotgunMagazineContents();
 };

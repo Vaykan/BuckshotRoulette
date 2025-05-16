@@ -17,6 +17,8 @@ class MyFrame : public wxFrame {
 
     std::array<wxButton*, BUTTON_ITEM> objectItemSlot = {};
     std::array<wxButton*, BUTTON_ITEM> subjectItemSlot = {};
+    wxButton* shootButton = nullptr;
+    wxButton* shootYourselfButton = nullptr;
     wxTextCtrl* textCtrl = nullptr;
     wxStaticText* objectHpText = nullptr;
     wxStaticText* subjectHpText = nullptr;
@@ -28,7 +30,9 @@ public:
 
     wxTextCtrl* getTextCtrl();
 
-    void OnAnyButtonClicked(wxCommandEvent& event);
+    void OnItemButtonClicked(wxCommandEvent& event);
+    void OnShootButtonClicked(wxCommandEvent& event);
+    void OnShootYourselfButtonClicked(wxCommandEvent& event);
 };
 
 #endif

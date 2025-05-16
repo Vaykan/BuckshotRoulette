@@ -121,3 +121,35 @@ MyFrame* Session::getMyFrame() {
 void Session::displayShotgunMagazineContents() {
     shotgun.displayMagazineContents();
 }
+
+void Session::checkTurn(bool shootYourself) {
+    if (shotgun.isEmpty()) {
+        subject = &player;
+        object = &dealer;
+        shotgun.loading(rGetNum(2, 8));
+        int randomCount = rGetNum(1, 4);
+        player.addRandomItems(randomCount);
+        dealer.addRandomItems(randomCount);
+//        giveTurn(subject);
+    } else if (shootYourself) {
+        if(getPreviousShellType() == LIVE) {
+            swapTurn();
+        }
+    }
+}
+
+void Session::swapTurn() {
+    std::swap(subject, object);
+}
+
+void Session::shootTarget() {
+    shotgun.shoot(object);
+}
+
+void Session::shootYourself() {
+    shotgun.shoot(subject);
+}
+
+ShellType Session::getPreviousShellType() {
+    return shotgun.getPreviousShellType();
+}
