@@ -39,7 +39,7 @@ public:
 
     void giveTurn(Player& subject);
 
-    void checkTurn(bool shootYourself = false);
+    void checkTurn();
     void swapTurn();
 
     void setDealer(Player& dealer);

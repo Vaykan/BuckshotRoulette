@@ -19,4 +19,10 @@ enum ItemType {
     PHONE
 };
 
+enum ShootType {
+    NODATA,
+    TARGET,
+    YOURSELF
+};
+
 #endif

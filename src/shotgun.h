@@ -14,11 +14,17 @@ class Session;
 class Shotgun {
 private:
     ShellType previousShellType;
+    ShootType previousShootType;
     bool doubleDamage = false;
     Session* session = nullptr;
     std::vector<ShellType> magazine;
 public:
+    Shotgun();
+
+    void setPreviousShootType(ShootType previousShootType);
+
     ShellType getPreviousShellType();
+    ShootType getPreviousShootType();
 
     void setDoubleDamage(bool doubleDamage);
     bool isDoubleDamage() const;

@@ -73,14 +73,14 @@ void MyFrame::OnItemButtonClicked(wxCommandEvent& event) {
 
 void MyFrame::OnShootButtonClicked(wxCommandEvent& event) {
     session->shootTarget();
-    session->swapTurn();
+    session->checkTurn();
     updateAllButtonText();
     updateHpStaticText();
 }
 
 void MyFrame::OnShootYourselfButtonClicked(wxCommandEvent& event) {
     session->shootYourself();
-    session->checkTurn(true);
+    session->checkTurn();
     updateAllButtonText();
     updateHpStaticText();
 }

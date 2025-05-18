@@ -122,17 +122,20 @@ void Session::displayShotgunMagazineContents() {
     shotgun.displayMagazineContents();
 }
 
-void Session::checkTurn(bool shootYourself) {
+void Session::checkTurn() {
     if (shotgun.isEmpty()) {
         subject = &player;
         object = &dealer;
         shotgun.loading(rGetNum(2, 8));
+        shotgun.displayMagazineContents();
         int randomCount = rGetNum(1, 4);
         player.addRandomItems(randomCount);
         dealer.addRandomItems(randomCount);
 //        giveTurn(subject);
-    } else if (shootYourself) {
-        if(getPreviousShellType() == LIVE) {
+    } else if (shotgun.getPreviousShootType() == TARGET) {
+        swapTurn();
+    } else if (shotgun.getPreviousShootType() == YOURSELF) {
+        if(shotgun.getPreviousShellType() == LIVE) {
             swapTurn();
         }
     }
@@ -144,10 +147,12 @@ void Session::swapTurn() {
 
 void Session::shootTarget() {
     shotgun.shoot(object);
+    shotgun.setPreviousShootType(TARGET);
 }
 
 void Session::shootYourself() {
     shotgun.shoot(subject);
+    shotgun.setPreviousShootType(YOURSELF);
 }
 
 ShellType Session::getPreviousShellType() {
