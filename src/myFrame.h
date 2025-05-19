@@ -22,8 +22,11 @@ class MyFrame : public wxFrame {
     wxTextCtrl* textCtrl = nullptr;
     wxStaticText* objectHpText = nullptr;
     wxStaticText* subjectHpText = nullptr;
+    wxStaticText* objectNameText = nullptr;
+    wxStaticText* subjectNameText = nullptr;
 
     void updateHpStaticText();
+    void updateNameStaticText();
     void updateAllButtonText();
 public:
     MyFrame(Session& session);

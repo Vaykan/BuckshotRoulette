@@ -14,9 +14,14 @@ MyFrame::MyFrame(Session& session) : wxFrame(NULL, wxID_ANY, "Buckshot Roulette"
     wxBoxSizer* sizerHpSubject = new wxBoxSizer(wxHORIZONTAL);
     wxBoxSizer* sizerDownButton = new wxBoxSizer(wxHORIZONTAL);
 
+    objectNameText = new wxStaticText(panel, wxID_ANY, "");
+    sizerHpObject->Add(objectNameText, 0, wxALIGN_CENTER | wxALL, 0);
+    sizer->Add(sizerHpObject, 0, wxALIGN_CENTER | wxALL, 0);
+
     objectHpText = new wxStaticText(panel, wxID_ANY, "");
-    sizerHpObject->Add(objectHpText, 0, wxALIGN_CENTER | wxALL, 5);
-    sizer->Add(sizerHpObject, 0, wxALIGN_CENTER | wxALL, 5);
+    sizerHpObject->Add(objectHpText, 0, wxALIGN_CENTER | wxALL, 3);
+    sizer->Add(sizerHpObject, 0, wxALIGN_CENTER | wxALL, 0);
+
     for (auto& i : objectItemSlot) {
         i = new wxButton(panel, wxID_ANY, wxT("ADRENALINE"));
         sizerUpButton->Add(i, 0, wxALIGN_CENTER | wxALL, 5);
@@ -41,9 +46,13 @@ MyFrame::MyFrame(Session& session) : wxFrame(NULL, wxID_ANY, "Buckshot Roulette"
 
     sizer->Add(sizerMiddleButton, 0, wxALIGN_CENTER | wxALL, 5);
 
+    subjectNameText = new wxStaticText(panel, wxID_ANY, "");
+    sizerHpSubject->Add(subjectNameText, 0, wxALIGN_CENTER | wxALL, 0);
+    sizer->Add(sizerHpSubject, 0, wxALIGN_CENTER | wxALL, 0);
+
     subjectHpText = new wxStaticText(panel, wxID_ANY, "");
-    sizerHpSubject->Add(subjectHpText, 0, wxALIGN_CENTER | wxALL, 5);
-    sizer->Add(sizerHpSubject, 0, wxALIGN_CENTER | wxALL, 5);
+    sizerHpSubject->Add(subjectHpText, 0, wxALIGN_CENTER | wxALL, 3);
+    sizer->Add(sizerHpSubject, 0, wxALIGN_CENTER | wxALL, 0);
 
     for (int i = 0; i < subjectItemSlot.size(); ++i) {
         subjectItemSlot[i] = new wxButton(panel, i);
@@ -52,6 +61,8 @@ MyFrame::MyFrame(Session& session) : wxFrame(NULL, wxID_ANY, "Buckshot Roulette"
     }
     updateAllButtonText();
     updateHpStaticText();
+    updateNameStaticText();
+
     sizer->Add(sizerDownButton, 0, wxALIGN_CENTER | wxALL, 5);
 
     panel->SetSizerAndFit(sizer);
@@ -69,6 +80,7 @@ void MyFrame::OnItemButtonClicked(wxCommandEvent& event) {
         session->checkTurn();
         updateAllButtonText();
         updateHpStaticText();
+        updateNameStaticText();
     }
 }
 
@@ -78,6 +90,7 @@ void MyFrame::OnShootButtonClicked(wxCommandEvent& event) {
     session->checkTurn();
     updateAllButtonText();
     updateHpStaticText();
+    updateNameStaticText();
 }
 
 void MyFrame::OnShootYourselfButtonClicked(wxCommandEvent& event) {
@@ -86,6 +99,7 @@ void MyFrame::OnShootYourselfButtonClicked(wxCommandEvent& event) {
     session->checkTurn();
     updateAllButtonText();
     updateHpStaticText();
+    updateNameStaticText();
 }
 
 
@@ -112,7 +126,14 @@ wxTextCtrl* MyFrame::getTextCtrl() {
 }
 
 void MyFrame::updateHpStaticText() {
-    objectHpText->SetLabel(std::to_string(session->getObject().getHitPoint()));
-    subjectHpText->SetLabel(std::to_string(session->getSubject().getHitPoint()));
+    std::string label = std::to_string(session->getObject().getHitPoint()) + " hp";
+    objectHpText->SetLabel(label);
+    label = std::to_string(session->getSubject().getHitPoint()) + " hp";
+    subjectHpText->SetLabel(label);
+}
+
+void MyFrame::updateNameStaticText() {
+    objectNameText->SetLabel(session->getObject().getName());
+    subjectNameText->SetLabel(session->getSubject().getName());
 }
 
