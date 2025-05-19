@@ -27,15 +27,12 @@ private:
     Player* object;
     Player* subject;
     Shotgun shotgun;
+    Action lastAction;
 
     MyFrame* myFrame = nullptr;
 public:
     void config();
     void start();
-
-    void shootTarget();
-    void shootYourself();
-
 
     void giveTurn(Player& subject);
 
@@ -50,12 +47,19 @@ public:
     Player& getObject();
     Player& getSubject();
 
+    void setLastAction(Action lastAction);
+
     void setMyFrame(MyFrame& myFrame);
     MyFrame* getMyFrame();
 
     ShellType getPreviousShellType();
 
     void displayShotgunMagazineContents();
+
+    void shootTarget();
+    void shootYourself();
+
+
 };
 
 #endif

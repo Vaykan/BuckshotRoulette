@@ -65,6 +65,7 @@ void MyFrame::OnItemButtonClicked(wxCommandEvent& event) {
 
     if (subject->getItemCount() > buttonID) {
         subject->useItem(buttonID);
+        session->setLastAction(USE_ITEM);
         session->checkTurn();
         updateAllButtonText();
         updateHpStaticText();
@@ -73,6 +74,7 @@ void MyFrame::OnItemButtonClicked(wxCommandEvent& event) {
 
 void MyFrame::OnShootButtonClicked(wxCommandEvent& event) {
     session->shootTarget();
+    session->setLastAction(SHOOT_TARGET);
     session->checkTurn();
     updateAllButtonText();
     updateHpStaticText();
@@ -80,6 +82,7 @@ void MyFrame::OnShootButtonClicked(wxCommandEvent& event) {
 
 void MyFrame::OnShootYourselfButtonClicked(wxCommandEvent& event) {
     session->shootYourself();
+    session->setLastAction(SHOOT_YOURSELF);
     session->checkTurn();
     updateAllButtonText();
     updateHpStaticText();

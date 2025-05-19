@@ -92,14 +92,3 @@ Session* Shotgun::getSession() {
 ShellType Shotgun::getPreviousShellType() {
     return previousShellType;
 }
-
-ShootType Shotgun::getPreviousShootType() {
-    return previousShootType;
-}
-
-void Shotgun::setPreviousShootType(ShootType previousShootType) {
-    this->previousShootType = previousShootType;
-}
-
-Shotgun::Shotgun() :
-        previousShootType(NODATA) {}

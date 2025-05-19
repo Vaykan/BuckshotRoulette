@@ -19,10 +19,11 @@ enum ItemType {
     PHONE
 };
 
-enum ShootType {
+enum Action {
     NODATA,
-    TARGET,
-    YOURSELF
+    SHOOT_TARGET,
+    SHOOT_YOURSELF,
+    USE_ITEM
 };
 
 #endif

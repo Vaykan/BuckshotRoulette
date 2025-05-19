@@ -131,14 +131,16 @@ void Session::checkTurn() {
         int randomCount = rGetNum(1, 4);
         player.addRandomItems(randomCount);
         dealer.addRandomItems(randomCount);
+//        lastAction = NODATA;
 //        giveTurn(subject);
-    } else if (shotgun.getPreviousShootType() == TARGET) {
+    } else if (lastAction == SHOOT_TARGET) {
         swapTurn();
-    } else if (shotgun.getPreviousShootType() == YOURSELF) {
+    } else if (lastAction == SHOOT_YOURSELF) {
         if(shotgun.getPreviousShellType() == LIVE) {
             swapTurn();
         }
     }
+    lastAction = NODATA;
 }
 
 void Session::swapTurn() {
@@ -147,14 +149,16 @@ void Session::swapTurn() {
 
 void Session::shootTarget() {
     shotgun.shoot(object);
-    shotgun.setPreviousShootType(TARGET);
 }
 
 void Session::shootYourself() {
     shotgun.shoot(subject);
-    shotgun.setPreviousShootType(YOURSELF);
 }
 
 ShellType Session::getPreviousShellType() {
     return shotgun.getPreviousShellType();
+}
+
+void Session::setLastAction(Action lastAction) {
+    this->lastAction = lastAction;
 }
