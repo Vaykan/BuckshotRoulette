@@ -16,7 +16,6 @@ MyFrame::MyFrame(Session& session) : wxFrame(NULL, wxID_ANY, "Buckshot Roulette"
 
     objectNameText = new wxStaticText(panel, wxID_ANY, "");
     sizerHpObject->Add(objectNameText, 0, wxALIGN_CENTER | wxALL, 0);
-    sizer->Add(sizerHpObject, 0, wxALIGN_CENTER | wxALL, 0);
 
     objectHpText = new wxStaticText(panel, wxID_ANY, "");
     sizerHpObject->Add(objectHpText, 0, wxALIGN_CENTER | wxALL, 3);
@@ -48,7 +47,6 @@ MyFrame::MyFrame(Session& session) : wxFrame(NULL, wxID_ANY, "Buckshot Roulette"
 
     subjectNameText = new wxStaticText(panel, wxID_ANY, "");
     sizerHpSubject->Add(subjectNameText, 0, wxALIGN_CENTER | wxALL, 0);
-    sizer->Add(sizerHpSubject, 0, wxALIGN_CENTER | wxALL, 0);
 
     subjectHpText = new wxStaticText(panel, wxID_ANY, "");
     sizerHpSubject->Add(subjectHpText, 0, wxALIGN_CENTER | wxALL, 3);
