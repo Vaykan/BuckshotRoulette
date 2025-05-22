@@ -133,10 +133,12 @@ void Session::checkTurn() {
         dealer.addRandomItems(randomCount);
 //        lastAction = NODATA;
 //        giveTurn(subject);
-    } else if (lastAction == SHOOT_TARGET) {
-        swapTurn();
-    } else if (lastAction == SHOOT_YOURSELF) {
-        if(shotgun.getPreviousShellType() == LIVE) {
+    } else if (lastAction == SHOOT_TARGET || lastAction ==SHOOT_YOURSELF && shotgun.getPreviousShellType() == LIVE) {
+        if (object->isSkipTurn()) {
+            myFrame->getTextCtrl()->AppendText(object->getReasonSkipTurn());
+            object->decreaseSkipTurn();
+        } else {
+            object->setIsHandcuffed(false);
             swapTurn();
         }
     }

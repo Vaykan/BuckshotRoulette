@@ -9,7 +9,7 @@ void Handcuffs::use() {
     owner->getMyFrame()->getTextCtrl()->AppendText(owner->getName());
     owner->getMyFrame()->getTextCtrl()->AppendText(" used Handcuffs\n\n");
     Player* target = owner->getTarget();
-    target->addSkipTurn("Skipped because Handcuffed\n\n");
+    target->addSkipTurn(target->getName() + " Skipped because Handcuffed\n\n");
     target->setIsHandcuffed(true);
 }
 
