@@ -24,6 +24,7 @@ class MyFrame : public wxFrame {
     wxStaticText* subjectHpText = nullptr;
     wxStaticText* objectNameText = nullptr;
     wxStaticText* subjectNameText = nullptr;
+    wxButton* debugButton = nullptr;
 
     void updateHpStaticText();
     void updateNameStaticText();
@@ -36,6 +37,7 @@ public:
     void OnItemButtonClicked(wxCommandEvent& event);
     void OnShootButtonClicked(wxCommandEvent& event);
     void OnShootYourselfButtonClicked(wxCommandEvent& event);
+    void OnDebugButtonClicked(wxCommandEvent& event);
 };
 
 #endif

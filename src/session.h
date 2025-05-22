@@ -1,6 +1,10 @@
 #ifndef BUCKSHOT_ROULETTE_SESSION_H
 #define BUCKSHOT_ROULETTE_SESSION_H
 
+#ifndef NDEBUG
+#include <windows.h>
+#endif
+
 #include "player.h"
 #include "shotgun.h"
 #include "input.h"

@@ -47,7 +47,12 @@ void Player::addRandomItems(int count) {
     if (count > maxItem - item.size()) count = maxItem - item.size();
 
     for (int i = 0; i < count; ++i) {
-        item.push_back(itemStorage[rGetNum(0, itemStorage.size() - 1)]);
+        int index = rGetNum(0, itemStorage.size() - 1);
+#ifndef NDEBUG
+        if (IsDebuggerPresent())
+            index = i;
+#endif
+        item.push_back(itemStorage[index]);
     }
 }
 

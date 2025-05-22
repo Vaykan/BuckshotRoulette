@@ -42,6 +42,13 @@ MyFrame::MyFrame(Session& session) : wxFrame(NULL, wxID_ANY, "Buckshot Roulette"
 
     sizerMiddleButton->Add(shootButton, 0, wxALIGN_CENTER | wxALL, 5);
     sizerMiddleButton->Add(shootYourselfButton, 0, wxALIGN_CENTER | wxALL, 5);
+#ifndef NDEBUG
+    if (IsDebuggerPresent()) {
+        debugButton = new wxButton(panel, wxID_ANY, wxT("Debug Button"));
+        debugButton->Bind(wxEVT_BUTTON, &MyFrame::OnDebugButtonClicked, this);
+    }
+#endif
+    sizerMiddleButton->Add(debugButton, 0, wxALIGN_CENTER | wxALL, 5);
 
     sizer->Add(sizerMiddleButton, 0, wxALIGN_CENTER | wxALL, 5);
 
@@ -66,6 +73,32 @@ MyFrame::MyFrame(Session& session) : wxFrame(NULL, wxID_ANY, "Buckshot Roulette"
     panel->SetSizerAndFit(sizer);
 
     SetSizeHints(850, 490);
+
+}
+
+void MyFrame::OnDebugButtonClicked(wxCommandEvent& event) {
+#ifndef NDEBUG
+    if (IsDebuggerPresent()) {
+        Player* subject = &session->getSubject();
+        Player* object = subject->getTarget();
+
+        std::vector<Item*> itemStorage = subject->getItemStorage();
+        static int index = 0;
+        if (index > itemStorage.size() - 1)
+            index = 0;
+
+        for (auto& i: subject->getItem()) {
+            i = itemStorage[index];
+        }
+
+        itemStorage = object->getItemStorage();
+        for (auto& i: object->getItem()) {
+            i = itemStorage[index];
+        }
+        index++;
+        updateAllButtonText();
+    }
+#endif
 }
 
 void MyFrame::OnItemButtonClicked(wxCommandEvent& event) {

@@ -33,6 +33,10 @@ void Session::config() {
     player.setHitPoint(randomCount);
 
     randomCount = rGetNum(1, 4);
+#ifndef NDEBUG
+    if (IsDebuggerPresent())
+        randomCount = 8;
+#endif
     player.addRandomItems(randomCount);
     dealer.addRandomItems(randomCount);
 
