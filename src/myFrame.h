@@ -29,6 +29,10 @@ class MyFrame : public wxFrame {
     void updateHpStaticText();
     void updateNameStaticText();
     void updateAllButtonText();
+
+#ifndef NDEBUG
+    bool isDebugButtonActivated = false;
+#endif
 public:
     MyFrame(Session& session);
 

@@ -44,7 +44,7 @@ MyFrame::MyFrame(Session& session) : wxFrame(NULL, wxID_ANY, "Buckshot Roulette"
     sizerMiddleButton->Add(shootYourselfButton, 0, wxALIGN_CENTER | wxALL, 5);
 #ifndef NDEBUG
     if (IsDebuggerPresent()) {
-        debugButton = new wxButton(panel, wxID_ANY, wxT("Debug Button"));
+        debugButton = new wxButton(panel, wxID_ANY, wxT("Debug Button: OFF"));
         debugButton->Bind(wxEVT_BUTTON, &MyFrame::OnDebugButtonClicked, this);
     }
 #endif
@@ -79,24 +79,8 @@ MyFrame::MyFrame(Session& session) : wxFrame(NULL, wxID_ANY, "Buckshot Roulette"
 void MyFrame::OnDebugButtonClicked(wxCommandEvent& event) {
 #ifndef NDEBUG
     if (IsDebuggerPresent()) {
-        Player* subject = &session->getSubject();
-        Player* object = subject->getTarget();
-
-        std::vector<Item*> itemStorage = subject->getItemStorage();
-        static int index = 0;
-        if (index > itemStorage.size() - 1)
-            index = 0;
-
-        for (auto& i: subject->getItem()) {
-            i = itemStorage[index];
-        }
-
-        itemStorage = object->getItemStorage();
-        for (auto& i: object->getItem()) {
-            i = itemStorage[index];
-        }
-        index++;
-        updateAllButtonText();
+        isDebugButtonActivated = !isDebugButtonActivated;
+        debugButton->SetLabel(isDebugButtonActivated ?"Debug Button: ON" : "Debug Button: OFF");
     }
 #endif
 }
@@ -104,6 +88,27 @@ void MyFrame::OnDebugButtonClicked(wxCommandEvent& event) {
 void MyFrame::OnItemButtonClicked(wxCommandEvent& event) {
     Player* subject = &session->getSubject();
     int buttonID = event.GetId();
+
+#ifndef NDEBUG
+    if (IsDebuggerPresent()) {
+        if (isDebugButtonActivated) {
+            std::vector<Item*> itemStorage = subject->getItemStorage();
+            static int index = 0;
+
+            if (index > itemStorage.size() - 1)
+                index = 0;
+            if (subject->getItemCount() > buttonID)
+                subject->getItem()[buttonID] = itemStorage[index];
+            else
+                subject->getItem().push_back(itemStorage[index]);
+
+            index++;
+            updateAllButtonText();
+            return;
+        }
+    }
+
+#endif
 
     if (subject->getItemCount() > buttonID) {
         subject->useItem(buttonID);
@@ -167,4 +172,3 @@ void MyFrame::updateNameStaticText() {
     objectNameText->SetLabel(session->getObject().getName());
     subjectNameText->SetLabel(session->getSubject().getName());
 }
-
