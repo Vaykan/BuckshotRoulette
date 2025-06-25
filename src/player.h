@@ -19,6 +19,7 @@ private:
     int maxItem = 8;
     bool dead = false;
     bool IsHandcuffed = false;
+    bool isAdrenalineActive = false;
 
     std::vector<Item*> item;
     std::vector<Item*> itemStorage;
@@ -48,6 +49,9 @@ public:
 
     void setIsHandcuffed(bool isHandcuffed);
     bool isHandcuffed() const;
+
+    bool getIsAdrenalineActive();
+    void setIsAdrenalineActive(bool isAdrenalineActive);
 
     void useItem(int index);
     void addRandomItems(int count);

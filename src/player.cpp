@@ -149,3 +149,11 @@ void Player::setMyFrame(MyFrame& myFrame) {
 MyFrame* Player::getMyFrame() {
     return myFrame;
 }
+
+bool Player::getIsAdrenalineActive() {
+    return isAdrenalineActive;
+}
+
+void Player::setIsAdrenalineActive(bool isAdrenalineActive) {
+    this->isAdrenalineActive = isAdrenalineActive;
+}

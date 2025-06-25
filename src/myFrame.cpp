@@ -21,10 +21,16 @@ MyFrame::MyFrame(Session& session) : wxFrame(NULL, wxID_ANY, "Buckshot Roulette"
     sizerHpObject->Add(objectHpText, 0, wxALIGN_CENTER | wxALL, 3);
     sizer->Add(sizerHpObject, 0, wxALIGN_CENTER | wxALL, 0);
 
-    for (auto& i : objectItemSlot) {
+   /* for (auto& i : objectItemSlot) {
         i = new wxButton(panel, wxID_ANY, wxT("ADRENALINE"));
         sizerUpButton->Add(i, 0, wxALIGN_CENTER | wxALL, 5);
+    }*/
+    for (int i = 0; i < objectItemSlot.size(); ++i) {
+        objectItemSlot[i] = new wxButton(panel, i + BUTTON_ITEM);
+        objectItemSlot[i]->Bind(wxEVT_BUTTON, &MyFrame::OnObjectItemButtonClicked, this);
+        sizerUpButton->Add(objectItemSlot[i], 0, wxALIGN_CENTER | wxALL, 5);
     }
+
     sizer->Add(sizerUpButton, 0, wxALIGN_CENTER | wxALL, 5);
 
     textCtrl = new wxTextCtrl(panel, wxID_ANY, wxT(""),
@@ -61,7 +67,7 @@ MyFrame::MyFrame(Session& session) : wxFrame(NULL, wxID_ANY, "Buckshot Roulette"
 
     for (int i = 0; i < subjectItemSlot.size(); ++i) {
         subjectItemSlot[i] = new wxButton(panel, i);
-        subjectItemSlot[i]->Bind(wxEVT_BUTTON, &MyFrame::OnItemButtonClicked, this);
+        subjectItemSlot[i]->Bind(wxEVT_BUTTON, &MyFrame::OnSubjectItemButtonClicked, this);
         sizerDownButton->Add(subjectItemSlot[i], 0, wxALIGN_CENTER | wxALL, 5);
     }
     updateAllButtonText();
@@ -85,33 +91,72 @@ void MyFrame::OnDebugButtonClicked(wxCommandEvent& event) {
 #endif
 }
 
-void MyFrame::OnItemButtonClicked(wxCommandEvent& event) {
-    Player* subject = &session->getSubject();
-    int buttonID = event.GetId();
+void MyFrame::OnObjectItemButtonClicked(wxCommandEvent& event) {
+    Player& subject = session->getSubject();
+    Player& object = session->getObject();
+    int buttonID = event.GetId() - BUTTON_ITEM;
 
 #ifndef NDEBUG
     if (IsDebuggerPresent()) {
         if (isDebugButtonActivated) {
-            std::vector<Item*> itemStorage = subject->getItemStorage();
+            std::vector<Item*> itemStorage = object.getItemStorage();
             static int index = 0;
 
             if (index > itemStorage.size() - 1)
                 index = 0;
-            if (subject->getItemCount() > buttonID)
-                subject->getItem()[buttonID] = itemStorage[index];
+            if (object.getItemCount() > buttonID)
+                object.getItem()[buttonID] = itemStorage[index];
             else
-                subject->getItem().push_back(itemStorage[index]);
+                object.getItem().push_back(itemStorage[index]);
 
             index++;
             updateAllButtonText();
             return;
         }
     }
-
 #endif
 
-    if (subject->getItemCount() > buttonID) {
-        subject->useItem(buttonID);
+    if(subject.getIsAdrenalineActive() && object.getItemCount() > buttonID) {
+        Item* correctItem = object.getItem()[buttonID];
+        correctItem->setOwner(subject);
+        object.useItem(buttonID);
+        correctItem->setOwner(object);
+        subject.setIsAdrenalineActive(false);
+        session->setLastAction(USE_ITEM);
+        session->checkTurn();
+        updateAllButtonText();
+        updateHpStaticText();
+        updateNameStaticText();
+    }
+}
+
+
+void MyFrame::OnSubjectItemButtonClicked(wxCommandEvent& event) {
+    Player& subject = session->getSubject();
+    int buttonID = event.GetId();
+
+#ifndef NDEBUG
+    if (IsDebuggerPresent()) {
+        if (isDebugButtonActivated) {
+            std::vector<Item*> itemStorage = subject.getItemStorage();
+            static int index = 0;
+
+            if (index > itemStorage.size() - 1)
+                index = 0;
+            if (subject.getItemCount() > buttonID)
+                subject.getItem()[buttonID] = itemStorage[index];
+            else
+                subject.getItem().push_back(itemStorage[index]);
+
+            index++;
+            updateAllButtonText();
+            return;
+        }
+    }
+#endif
+
+    if (subject.getItemCount() > buttonID) {
+        subject.useItem(buttonID);
         session->setLastAction(USE_ITEM);
         session->checkTurn();
         updateAllButtonText();
@@ -121,6 +166,8 @@ void MyFrame::OnItemButtonClicked(wxCommandEvent& event) {
 }
 
 void MyFrame::OnShootButtonClicked(wxCommandEvent& event) {
+    Player& subject = session->getSubject();
+    subject.setIsAdrenalineActive(false);
     session->shootTarget();
     session->setLastAction(SHOOT_TARGET);
     session->checkTurn();
@@ -130,6 +177,8 @@ void MyFrame::OnShootButtonClicked(wxCommandEvent& event) {
 }
 
 void MyFrame::OnShootYourselfButtonClicked(wxCommandEvent& event) {
+    Player& subject = session->getSubject();
+    subject.setIsAdrenalineActive(false);
     session->shootYourself();
     session->setLastAction(SHOOT_YOURSELF);
     session->checkTurn();

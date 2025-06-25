@@ -38,7 +38,8 @@ public:
 
     wxTextCtrl* getTextCtrl();
 
-    void OnItemButtonClicked(wxCommandEvent& event);
+    void OnSubjectItemButtonClicked(wxCommandEvent& event);
+    void OnObjectItemButtonClicked(wxCommandEvent& event);
     void OnShootButtonClicked(wxCommandEvent& event);
     void OnShootYourselfButtonClicked(wxCommandEvent& event);
     void OnDebugButtonClicked(wxCommandEvent& event);
