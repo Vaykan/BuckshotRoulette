@@ -9,25 +9,29 @@
 #include "player.h"
 
 class Player;
+class Session;
 
 class Shotgun {
 private:
+    ShellType previousShellType;
     bool doubleDamage = false;
-
+    Session* session = nullptr;
     std::vector<ShellType> magazine;
 public:
+    ShellType getPreviousShellType();
+
     void setDoubleDamage(bool doubleDamage);
-    bool isDoubleDamage() const;
 
     void shoot(Player* target);
     void pumping();
     void loading(int count);
 
-    void setSizeMagazine(int size);
     void displayMagazineContents();
     bool isEmpty();
     ShellType& getBackShell();
     std::vector<ShellType>& getMagazine();
+
+    void setSession(Session& session);
 };
 
 #endif

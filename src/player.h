@@ -9,6 +9,7 @@
 
 class Item;
 class Shotgun;
+class MyFrame;
 
 class Player {
 private:
@@ -18,6 +19,7 @@ private:
     int maxItem = 8;
     bool dead = false;
     bool IsHandcuffed = false;
+    bool isAdrenalineActive = false;
 
     std::vector<Item*> item;
     std::vector<Item*> itemStorage;
@@ -25,6 +27,8 @@ private:
 
     Shotgun* shotgun;
     Player* target;
+
+    MyFrame* myFrame = nullptr;
 public:
     Player();
     ~Player();
@@ -32,19 +36,18 @@ public:
     void setName(std::string name);
     std::string getName();
 
-    void getStats();
 
     void changeHitPoint(int delta);
     void setHitPoint(int hitPoint);
     int getHitPoint() const;
 
     void setMaxHitPoint(int maxHitPoint);
-    int getMaxHitPoint() const;
-
-    bool isDead();
 
     void setIsHandcuffed(bool isHandcuffed);
     bool isHandcuffed() const;
+
+    bool getIsAdrenalineActive();
+    void setIsAdrenalineActive(bool isAdrenalineActive);
 
     void useItem(int index);
     void addRandomItems(int count);
@@ -65,6 +68,9 @@ public:
     void decreaseSkipTurn();
     bool isSkipTurn() const;
     std::string getReasonSkipTurn();
+
+    void setMyFrame(MyFrame& myFrame);
+    MyFrame* getMyFrame();
 };
 
 #endif

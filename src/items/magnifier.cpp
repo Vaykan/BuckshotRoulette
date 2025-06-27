@@ -6,9 +6,10 @@ Magnifier::Magnifier() {
 }
 
 void Magnifier::use() {
-    std::cout << owner->getName() << " used Magnifier\n\n";
+    owner->getMyFrame()->getTextCtrl()->AppendText(owner->getName());
+    owner->getMyFrame()->getTextCtrl()->AppendText(" used Magnifier\n\n");
     if (owner->getShotgun()->getBackShell() == LIVE)
-        std::cout << "Current shell is LIVE\n\n";
+        owner->getMyFrame()->getTextCtrl()->AppendText("Current shell is LIVE\n\n");
     else
-        std::cout << "Current shell is BLANK\n\n";
+        owner->getMyFrame()->getTextCtrl()->AppendText("Current shell is BLANK\n\n");
 }

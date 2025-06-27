@@ -8,6 +8,7 @@ public:
     Adrenaline();
 
     void use() final;
+    bool isUsable() final;
 };
 
 #endif

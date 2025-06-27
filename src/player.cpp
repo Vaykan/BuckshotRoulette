@@ -1,7 +1,5 @@
 #include "player.h"
 
-#include <utility>
-
 Player::Player() {
     skipReason.reserve(2);
 }
@@ -33,10 +31,6 @@ void Player::setMaxHitPoint(int maxHitPoint) {
     this->maxHitPoint = maxHitPoint;
 }
 
-int Player::getMaxHitPoint() const {
-    return maxHitPoint;
-}
-
 void Player::setTarget(Player& target) {
     this->target = &target;
 }
@@ -45,13 +39,16 @@ void Player::setShotgun(Shotgun& shotgun) {
     this->shotgun = &shotgun;
 }
 
-#include "items/pill.h"
-
 void Player::addRandomItems(int count) {
     if (count > maxItem - item.size()) count = maxItem - item.size();
 
     for (int i = 0; i < count; ++i) {
-        item.push_back(itemStorage[rGetNum(0, itemStorage.size() - 1)]);
+        int index = rGetNum(0, itemStorage.size() - 1);
+#ifndef NDEBUG
+        if (IsDebuggerPresent())
+            index = i;
+#endif
+        item.push_back(itemStorage[index]);
     }
 }
 
@@ -68,18 +65,8 @@ void Player::useItem(int index) {
         item[index]->use();
         item.erase(item.begin() + index);
     } else {
-        std::cout << "Cannot be used\n\n";
+        myFrame->getTextCtrl()->AppendText("Cannot be used\n\n");
     }
-}
-
-void Player::getStats() {
-    std::cout << name << ": \n"
-              << "Hit Point: " << getHitPoint() << std::endl
-              << "Item count: " << item.size() << std::endl;
-    for (int i = 0; i < item.size(); i++) {
-        std::cout << i << ": " << item[i]->getName() << std::endl;
-    }
-    std::cout << "\n\n";
 }
 
 void Player::setName(std::string name) {
@@ -120,10 +107,6 @@ Shotgun* Player::getShotgun() {
     return shotgun;
 }
 
-bool Player::isDead() {
-    return dead;
-}
-
 std::vector<Item*>& Player::getItem() {
     return item;
 }
@@ -139,4 +122,20 @@ void Player::setIsHandcuffed(bool isHandcuffed) {
 void Player::decreaseSkipTurn() {
     if (!skipReason.empty())
         skipReason.pop_back();
+}
+
+void Player::setMyFrame(MyFrame& myFrame) {
+    this->myFrame = &myFrame;
+}
+
+MyFrame* Player::getMyFrame() {
+    return myFrame;
+}
+
+bool Player::getIsAdrenalineActive() {
+    return isAdrenalineActive;
+}
+
+void Player::setIsAdrenalineActive(bool isAdrenalineActive) {
+    this->isAdrenalineActive = isAdrenalineActive;
 }

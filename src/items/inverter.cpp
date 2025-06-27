@@ -6,7 +6,8 @@ Inverter::Inverter() {
 }
 
 void Inverter::use() {
-    std::cout << owner->getName() << " used Inverter\n\n";
+    owner->getMyFrame()->getTextCtrl()->AppendText(owner->getName());
+    owner->getMyFrame()->getTextCtrl()->AppendText(" used Inverter\n\n");
     ShellType* currentShell = &owner->getShotgun()->getBackShell();
     if (*currentShell == LIVE)
         *currentShell = BLANK;
