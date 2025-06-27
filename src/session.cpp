@@ -124,6 +124,13 @@ void Session::displayShotgunMagazineContents() {
 }
 
 void Session::checkTurn() {
+    if (!player.getHitPoint()) {
+        myFrame->getTextCtrl()->AppendText("Player dead");
+        return;
+    } else if (!dealer.getHitPoint()) {
+        myFrame->getTextCtrl()->AppendText("Dealer dead");
+        return;
+    }
     if (shotgun.isEmpty()) {
         subject = &player;
         object = &dealer;

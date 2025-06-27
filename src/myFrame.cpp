@@ -92,6 +92,9 @@ void MyFrame::OnDebugButtonClicked(wxCommandEvent& event) {
 }
 
 void MyFrame::OnObjectItemButtonClicked(wxCommandEvent& event) {
+    if (!session->getPlayer().getHitPoint() || !session->getDealer().getHitPoint())
+        return;
+
     Player& subject = session->getSubject();
     Player& object = session->getObject();
     int buttonID = event.GetId() - BUTTON_ITEM;
@@ -132,6 +135,9 @@ void MyFrame::OnObjectItemButtonClicked(wxCommandEvent& event) {
 
 
 void MyFrame::OnSubjectItemButtonClicked(wxCommandEvent& event) {
+    if (!session->getPlayer().getHitPoint() || !session->getDealer().getHitPoint())
+        return;
+
     Player& subject = session->getSubject();
     int buttonID = event.GetId();
 
@@ -166,6 +172,8 @@ void MyFrame::OnSubjectItemButtonClicked(wxCommandEvent& event) {
 }
 
 void MyFrame::OnShootButtonClicked(wxCommandEvent& event) {
+    if (!session->getPlayer().getHitPoint() || !session->getDealer().getHitPoint())
+        return;
     Player& subject = session->getSubject();
     subject.setIsAdrenalineActive(false);
     session->shootTarget();
@@ -177,6 +185,8 @@ void MyFrame::OnShootButtonClicked(wxCommandEvent& event) {
 }
 
 void MyFrame::OnShootYourselfButtonClicked(wxCommandEvent& event) {
+    if (!session->getPlayer().getHitPoint() || !session->getDealer().getHitPoint())
+        return;
     Player& subject = session->getSubject();
     subject.setIsAdrenalineActive(false);
     session->shootYourself();
