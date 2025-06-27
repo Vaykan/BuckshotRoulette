@@ -45,10 +45,6 @@ bool Shotgun::isEmpty() {
     return magazine.empty();
 }
 
-void Shotgun::setSizeMagazine(int size) {
-    magazine.reserve(size);
-}
-
 void Shotgun::displayMagazineContents() {
     int live = 0;
     int blank = 0;
@@ -73,20 +69,12 @@ std::vector<ShellType>& Shotgun::getMagazine() {
     return magazine;
 }
 
-bool Shotgun::isDoubleDamage() const {
-    return doubleDamage;
-}
-
 void Shotgun::setDoubleDamage(bool doubleDamage) {
     this->doubleDamage = doubleDamage;
 }
 
 void Shotgun::setSession(Session& session) {
     this->session = &session;
-}
-
-Session* Shotgun::getSession() {
-    return session;
 }
 
 ShellType Shotgun::getPreviousShellType() {

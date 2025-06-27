@@ -21,20 +21,17 @@ public:
     ShellType getPreviousShellType();
 
     void setDoubleDamage(bool doubleDamage);
-    bool isDoubleDamage() const;
 
     void shoot(Player* target);
     void pumping();
     void loading(int count);
 
-    void setSizeMagazine(int size);
     void displayMagazineContents();
     bool isEmpty();
     ShellType& getBackShell();
     std::vector<ShellType>& getMagazine();
 
     void setSession(Session& session);
-    Session* getSession();
 };
 
 #endif

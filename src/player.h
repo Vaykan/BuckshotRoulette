@@ -36,16 +36,12 @@ public:
     void setName(std::string name);
     std::string getName();
 
-    void getStats();
 
     void changeHitPoint(int delta);
     void setHitPoint(int hitPoint);
     int getHitPoint() const;
 
     void setMaxHitPoint(int maxHitPoint);
-    int getMaxHitPoint() const;
-
-    bool isDead();
 
     void setIsHandcuffed(bool isHandcuffed);
     bool isHandcuffed() const;

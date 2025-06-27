@@ -3,7 +3,7 @@
 #include "session.h"
 #include "player.h"
 
-MyFrame::MyFrame(Session& session) : wxFrame(NULL, wxID_ANY, "Buckshot Roulette"), session(&session){
+MyFrame::MyFrame(Session& session) : wxFrame(NULL, wxID_ANY, "Buckshot Roulette"), session(&session) {
     wxPanel* panel = new wxPanel(this, wxID_ANY);
 
     wxBoxSizer* sizer = new wxBoxSizer(wxVERTICAL);
@@ -21,10 +21,6 @@ MyFrame::MyFrame(Session& session) : wxFrame(NULL, wxID_ANY, "Buckshot Roulette"
     sizerHpObject->Add(objectHpText, 0, wxALIGN_CENTER | wxALL, 3);
     sizer->Add(sizerHpObject, 0, wxALIGN_CENTER | wxALL, 0);
 
-   /* for (auto& i : objectItemSlot) {
-        i = new wxButton(panel, wxID_ANY, wxT("ADRENALINE"));
-        sizerUpButton->Add(i, 0, wxALIGN_CENTER | wxALL, 5);
-    }*/
     for (int i = 0; i < objectItemSlot.size(); ++i) {
         objectItemSlot[i] = new wxButton(panel, i + BUTTON_ITEM);
         objectItemSlot[i]->Bind(wxEVT_BUTTON, &MyFrame::OnObjectItemButtonClicked, this);
@@ -34,8 +30,8 @@ MyFrame::MyFrame(Session& session) : wxFrame(NULL, wxID_ANY, "Buckshot Roulette"
     sizer->Add(sizerUpButton, 0, wxALIGN_CENTER | wxALL, 5);
 
     textCtrl = new wxTextCtrl(panel, wxID_ANY, wxT(""),
-                                          wxDefaultPosition, wxSize(300, 200),
-                                          wxTE_MULTILINE | wxTE_READONLY);
+                              wxDefaultPosition, wxSize(300, 200),
+                              wxTE_MULTILINE | wxTE_READONLY);
 
     sizerText->Add(textCtrl, 0, wxALIGN_CENTER | wxALL, 5);
 
@@ -119,7 +115,7 @@ void MyFrame::OnObjectItemButtonClicked(wxCommandEvent& event) {
     }
 #endif
 
-    if(subject.getIsAdrenalineActive() && object.getItemCount() > buttonID) {
+    if (subject.getIsAdrenalineActive() && object.getItemCount() > buttonID) {
         Item* correctItem = object.getItem()[buttonID];
         correctItem->setOwner(subject);
         object.useItem(buttonID);
@@ -196,7 +192,6 @@ void MyFrame::OnShootYourselfButtonClicked(wxCommandEvent& event) {
     updateHpStaticText();
     updateNameStaticText();
 }
-
 
 
 void MyFrame::updateAllButtonText() {

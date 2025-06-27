@@ -7,7 +7,6 @@
 
 #include "player.h"
 #include "shotgun.h"
-#include "input.h"
 #include "myFrame.h"
 
 #include "items/item.h"
@@ -36,15 +35,9 @@ private:
     MyFrame* myFrame = nullptr;
 public:
     void config();
-    void start();
-
-    void giveTurn(Player& subject);
 
     void checkTurn();
     void swapTurn();
-
-    void setDealer(Player& dealer);
-    void setPlayer(Player& player);
 
     Player& getDealer();
     Player& getPlayer();
@@ -55,8 +48,6 @@ public:
 
     void setMyFrame(MyFrame& myFrame);
     MyFrame* getMyFrame();
-
-    ShellType getPreviousShellType();
 
     void displayShotgunMagazineContents();
 

@@ -31,10 +31,6 @@ void Player::setMaxHitPoint(int maxHitPoint) {
     this->maxHitPoint = maxHitPoint;
 }
 
-int Player::getMaxHitPoint() const {
-    return maxHitPoint;
-}
-
 void Player::setTarget(Player& target) {
     this->target = &target;
 }
@@ -73,16 +69,6 @@ void Player::useItem(int index) {
     }
 }
 
-void Player::getStats() {
-    std::cout << name << ": \n"
-              << "Hit Point: " << getHitPoint() << std::endl
-              << "Item count: " << item.size() << std::endl;
-    for (int i = 0; i < item.size(); i++) {
-        std::cout << i << ": " << item[i]->getName() << std::endl;
-    }
-    std::cout << "\n\n";
-}
-
 void Player::setName(std::string name) {
     this->name = std::move(name);
 }
@@ -119,10 +105,6 @@ std::string Player::getReasonSkipTurn() {
 
 Shotgun* Player::getShotgun() {
     return shotgun;
-}
-
-bool Player::isDead() {
-    return dead;
 }
 
 std::vector<Item*>& Player::getItem() {

@@ -18,7 +18,3 @@ std::string Item::getName() {
 bool Item::isUsable() {
     return true;
 }
-
-ItemType Item::getItemType() {
-    return itemType;
-}

@@ -23,8 +23,6 @@ void Session::config() {
     }
     player.setArrayItemSize(8);
 
-    //set from start()
-
     object = &dealer;
     subject = &player;
 
@@ -41,60 +39,6 @@ void Session::config() {
     shotgun.loading(rGetNum(2, 8));
 }
 
-void Session::start() {
-//    shotgun.displayMagazineContents();
-    int randomCount;
-    if (subject->isSkipTurn()) {
-        std::cout << subject->getReasonSkipTurn();
-        subject->decreaseSkipTurn();
-    } else {
-        subject->setIsHandcuffed(false);
-        giveTurn(*subject);
-    }
-    if (shotgun.isEmpty()) {
-        object = &dealer;
-        subject = &player;
-        randomCount = rGetNum(1, 4);
-        player.addRandomItems(randomCount);
-        dealer.addRandomItems(randomCount);
-        shotgun.loading(rGetNum(2, 8));
-        shotgun.displayMagazineContents();
-    } else {
-        std::swap(object, subject);
-    }
-    if (!player.getHitPoint())
-        myFrame->getTextCtrl()->AppendText("\nPlayer dead\n");
-    else if (!dealer.getHitPoint())
-        myFrame->getTextCtrl()->AppendText("\nDealer dead\n\n");
-}
-
-void Session::giveTurn(Player& subject) {
-    subject.getStats();
-    subject.getTarget()->getStats();
-    while (getInputBool() && subject.getItemCount()) {
-        subject.getStats();
-        subject.getTarget()->getStats();
-        subject.useItem(getCorrectInt(0, subject.getItemCount() - 1));
-        if (player.isDead() || dealer.isDead() || shotgun.isEmpty())
-            return;
-    }
-    if (getInputBool()) {
-        shotgun.shoot(subject.getTarget());
-    } else {
-        if (shotgun.getBackShell() == BLANK)
-            subject.getTarget()->addSkipTurn("");
-        shotgun.shoot(&subject);
-    }
-}
-
-void Session::setDealer(Player& dealer) {
-    this->dealer = dealer;
-}
-
-void Session::setPlayer(Player& player) {
-    this->player = player;
-}
-
 Player& Session::getDealer() {
     return dealer;
 }
@@ -103,7 +47,7 @@ Player& Session::getPlayer() {
     return player;
 }
 
-Player& Session::getObject(){
+Player& Session::getObject() {
     return *object;
 }
 
@@ -139,9 +83,7 @@ void Session::checkTurn() {
         int randomCount = rGetNum(1, 4);
         player.addRandomItems(randomCount);
         dealer.addRandomItems(randomCount);
-//        lastAction = NODATA;
-//        giveTurn(subject);
-    } else if (lastAction == SHOOT_TARGET || lastAction ==SHOOT_YOURSELF && shotgun.getPreviousShellType() == LIVE) {
+    } else if (lastAction == SHOOT_TARGET || lastAction == SHOOT_YOURSELF && shotgun.getPreviousShellType() == LIVE) {
         if (object->isSkipTurn()) {
             myFrame->getTextCtrl()->AppendText(object->getReasonSkipTurn());
             object->decreaseSkipTurn();
@@ -163,10 +105,6 @@ void Session::shootTarget() {
 
 void Session::shootYourself() {
     shotgun.shoot(subject);
-}
-
-ShellType Session::getPreviousShellType() {
-    return shotgun.getPreviousShellType();
 }
 
 void Session::setLastAction(Action lastAction) {

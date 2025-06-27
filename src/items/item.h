@@ -4,19 +4,18 @@
 #include "../enum.h"
 #include "../player.h"
 #include "../random.h"
-#include "../input.h"
 #include "../myFrame.h"
 
 class Item {
 protected:
     Item();
+
     std::string name;
     ItemType itemType;
 
     Player* owner{};
 public:
     std::string getName();
-    ItemType getItemType();
 
     void setOwner(Player& owner);
 
