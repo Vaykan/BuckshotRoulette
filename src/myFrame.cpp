@@ -158,6 +158,7 @@ void MyFrame::OnSubjectItemButtonClicked(wxCommandEvent& event) {
 #endif
 
     if (subject.getItemCount() > buttonID) {
+        subject.setIsAdrenalineActive(false);
         subject.useItem(buttonID);
         session->setLastAction(USE_ITEM);
         session->checkTurn();
