@@ -1,4 +1,5 @@
 #include "session.h"
+#include "aiManager.h"
 
 void Session::config() {
     dealer.setName("Dealer");
@@ -93,6 +94,19 @@ void Session::checkTurn() {
         }
     }
     lastAction = NODATA;
+    if (subject->getIsAI()) {
+        AIManager* aiManager = &subject->getAIManager();
+        int liveShellLeft = 0;
+        int blankShellLeft = 0;
+
+        for (auto& i: shotgun.getMagazine()) {
+            if (i == LIVE)
+                liveShellLeft += 1;
+            else
+                blankShellLeft += 1;
+        }
+        aiManager->setShellLeft(liveShellLeft, blankShellLeft);
+    }
 }
 
 void Session::swapTurn() {

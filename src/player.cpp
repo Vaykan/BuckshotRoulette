@@ -139,3 +139,19 @@ bool Player::getIsAdrenalineActive() {
 void Player::setIsAdrenalineActive(bool isAdrenalineActive) {
     this->isAdrenalineActive = isAdrenalineActive;
 }
+
+void Player::setIsAI(bool isAI) {
+    this->isAI = isAI;
+}
+
+bool Player::getIsAI() {
+    return isAI;
+}
+
+void Player::setAIManager(AIManager& neuralNetwork) {
+    this->aiManager = &neuralNetwork;
+}
+
+AIManager& Player::getAIManager() {
+    return *aiManager;
+}

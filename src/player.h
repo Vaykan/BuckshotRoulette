@@ -10,6 +10,7 @@
 class Item;
 class Shotgun;
 class MyFrame;
+class AIManager;
 
 class Player {
 private:
@@ -21,12 +22,16 @@ private:
     bool IsHandcuffed = false;
     bool isAdrenalineActive = false;
 
+    bool isAI = false;
+
     std::vector<Item*> item;
     std::vector<Item*> itemStorage;
     std::vector<std::string> skipReason;
 
     Shotgun* shotgun;
     Player* target;
+
+    AIManager* aiManager = nullptr;
 
     MyFrame* myFrame = nullptr;
 public:
@@ -35,7 +40,6 @@ public:
 
     void setName(std::string name);
     std::string getName();
-
 
     void changeHitPoint(int delta);
     void setHitPoint(int hitPoint);
@@ -48,6 +52,9 @@ public:
 
     bool getIsAdrenalineActive();
     void setIsAdrenalineActive(bool isAdrenalineActive);
+
+    void setIsAI(bool isAI);
+    bool getIsAI();
 
     void useItem(int index);
     void addRandomItems(int count);
@@ -63,6 +70,9 @@ public:
 
     void setShotgun(Shotgun& shotgun);
     Shotgun* getShotgun();
+
+    void setAIManager(AIManager& neuralNetwork);
+    AIManager& getAIManager();
 
     void addSkipTurn(std::string reason);
     void decreaseSkipTurn();

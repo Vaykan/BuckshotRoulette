@@ -18,6 +18,8 @@ private:
     Session* session = nullptr;
     std::vector<ShellType> magazine;
 public:
+    static const int MAX_MAGAZINE = 8;
+
     ShellType getPreviousShellType();
 
     void setDoubleDamage(bool doubleDamage);
