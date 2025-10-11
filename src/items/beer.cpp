@@ -1,4 +1,7 @@
 #include "beer.h"
+#include "../player.h"
+#include "../shotgun.h"
+
 
 Beer::Beer() {
     itemType = BEER;

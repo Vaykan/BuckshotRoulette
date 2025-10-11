@@ -2,6 +2,7 @@
 
 #include "session.h"
 #include "player.h"
+#include "items/item.h."
 
 MyFrame::MyFrame(Session& session) : wxFrame(NULL, wxID_ANY, "Buckshot Roulette"), session(&session) {
     wxPanel* panel = new wxPanel(this, wxID_ANY);

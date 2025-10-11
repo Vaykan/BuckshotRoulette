@@ -1,5 +1,8 @@
 #include "player.h"
 
+#include "random.h"
+#include "items/item.h"
+
 Player::Player() {
     skipReason.reserve(2);
 }

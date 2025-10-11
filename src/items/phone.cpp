@@ -1,5 +1,6 @@
 #include "phone.h"
 #include "../aiManager.h"
+#include "../shotgun.h"
 
 Phone::Phone() {
     itemType = PHONE;

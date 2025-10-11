@@ -1,4 +1,6 @@
 #include "inverter.h"
+#include "../player.h"
+#include "../shotgun.h"
 
 Inverter::Inverter() {
     itemType = INVERTER;

@@ -1,5 +1,7 @@
 #include "shotgun.h"
 #include "session.h"
+#include "aiManager.h"
+#include "myFrame.h"
 
 void Shotgun::shoot(Player* target) {
     session->getMyFrame()->getTextCtrl()->AppendText("\n\n");
@@ -28,6 +30,11 @@ void Shotgun::pumping() {
 }
 
 void Shotgun::loading(int count) {
+    if (session->getSubject().getIsAI())
+        session->getSubject().getAIManager().loadMagazine(count);
+    if (session->getObject().getIsAI())
+        session->getObject().getAIManager().loadMagazine(count);
+
     for (int i = 0; i < count; ++i) {
         magazine.push_back(BLANK);
     }

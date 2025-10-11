@@ -1,5 +1,6 @@
 #include "magnifier.h"
 #include "../aiManager.h"
+#include "../shotgun.h"
 
 Magnifier::Magnifier() {
     itemType = MAGNIFIER;

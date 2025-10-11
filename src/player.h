@@ -1,11 +1,7 @@
 #ifndef BUCKSHOT_ROULETTE_PLAYER_H
 #define BUCKSHOT_ROULETTE_PLAYER_H
 
-#include <vector>
 
-#include "items/item.h"
-#include "shotgun.h"
-#include "enum.h"
 
 class Item;
 class Shotgun;

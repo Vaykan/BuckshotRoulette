@@ -1,4 +1,5 @@
 #include "saw.h"
+#include "../shotgun.h"
 
 Saw::Saw() {
     itemType = SAW;
