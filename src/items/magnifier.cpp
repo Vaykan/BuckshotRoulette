@@ -13,11 +13,11 @@ void Magnifier::use() {
     if (owner->getShotgun()->getBackShell() == LIVE) {
         owner->getMyFrame()->getTextCtrl()->AppendText("Current shell is LIVE\n\n");
         if(owner->getIsAI())
-            owner->getAIManager().setShellType(AIShellTypeState::LIVE, 0);
+            owner->getAIManager().setMagazineType(AIShellTypeState::LIVE, 0);
     }
     else {
         owner->getMyFrame()->getTextCtrl()->AppendText("Current shell is BLANK\n\n");
         if(owner->getIsAI())
-            owner->getAIManager().setShellType(AIShellTypeState::BLANK, 0);
+            owner->getAIManager().setMagazineType(AIShellTypeState::BLANK, 0);
     }
 }

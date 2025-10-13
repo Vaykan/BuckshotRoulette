@@ -79,23 +79,26 @@ class AIManager {
     };
     NeuralNetwork neuralNetwork;
     std::vector<float> magazine;
+    static constexpr float LIVE = 1;
+    static constexpr float BLANK = -1;
     static constexpr float UNKNOWN = 0;
     static constexpr float IS_EMPTY = -1;
     static constexpr float IS_FILLED = 1;
 
+    void setShellType();
     void setShellHave();
+    void setShellLeft(int liveShellLeft, int blankShellLeft);
 public:
     AIManager();
+
+    void setMagazineType(AIShellTypeState aiShellTypeState, int index);
+    void pumpingMagazine();
+    void loadMagazine(int count);
+    void syncMagazineAndShells(int liveShellLeft, int blankShellLeft);
+
     void saveWeightsToFile();
     void loadWeightsFromFile();
-
-    void setShellType(AIShellTypeState aiShellTypeState, int index);
     void fillShellType();
-
-    void setShellLeft(int liveShellLeft, int blankShellLeft);
-
-    void loadMagazine(int count);
-    void syncMagazine(std::vector<ShellType>* magazine);
 
     void setLastAction(Action lastAction);
     void setDropLastShell(ShellType shellType);

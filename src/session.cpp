@@ -117,8 +117,7 @@ void Session::checkTurn() {
             else
                 blankShellLeft += 1;
         }
-        aiManager->setShellLeft(liveShellLeft, blankShellLeft);
-        aiManager->syncMagazine(&shotgun.getMagazine());
+        aiManager->syncMagazineAndShells(liveShellLeft, blankShellLeft);
     }
 }
 

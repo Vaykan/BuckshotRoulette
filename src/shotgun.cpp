@@ -27,6 +27,11 @@ void Shotgun::pumping() {
         session->getMyFrame()->getTextCtrl()->AppendText("BLANK shell ejected\n");
     magazine.pop_back();
     session->getMyFrame()->getTextCtrl()->AppendText("\n\n");
+
+    if (session->getSubject().getIsAI())
+        session->getSubject().getAIManager().pumpingMagazine();
+    if (session->getObject().getIsAI())
+        session->getObject().getAIManager().pumpingMagazine();
 }
 
 void Shotgun::loading(int count) {

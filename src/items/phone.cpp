@@ -18,13 +18,13 @@ void Phone::use() {
             owner->getMyFrame()->getTextCtrl()->AppendText(std::to_string(-(index - magazine->size())));
             owner->getMyFrame()->getTextCtrl()->AppendText(" is LIVE\n\n");
             if (owner->getIsAI())
-                owner->getAIManager().setShellType(AIShellTypeState::LIVE, index);
+                owner->getAIManager().setMagazineType(AIShellTypeState::LIVE, index);
         } else {
             owner->getMyFrame()->getTextCtrl()->AppendText("Shell ");
             owner->getMyFrame()->getTextCtrl()->AppendText(std::to_string(-(index - magazine->size())));
             owner->getMyFrame()->getTextCtrl()->AppendText(" is BLANK\n\n");
             if (owner->getIsAI())
-                owner->getAIManager().setShellType(AIShellTypeState::BLANK, index);
+                owner->getAIManager().setMagazineType(AIShellTypeState::BLANK, index);
         }
     } else {
         owner->getMyFrame()->getTextCtrl()->AppendText("How Unfortunate...\n\n");
