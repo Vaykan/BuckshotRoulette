@@ -21,6 +21,7 @@ enum class AIHitPoint {
 enum class AIL;
 
 class NeuralNetwork;
+class Item;
 
 class AIManager {
     enum class InputNeurons {
@@ -55,6 +56,7 @@ class AIManager {
         SHELL_BLANK_LEFT_3,
         SHELL_BLANK_LEFT_4,
 
+        MY_ITEM_PILL_COUNT,
         MY_ITEM_CIGARETTE_COUNT,
         MY_ITEM_BEER_COUNT,
         MY_ITEM_ADRENALINE_COUNT,
@@ -63,6 +65,7 @@ class AIManager {
         MY_ITEM_INVERTER_COUNT,
         MY_ITEM_SAW_COUNT,
         MY_ITEM_PHONE_COUNT,
+        ENEMY_ITEM_PILL_COUNT,
         ENEMY_ITEM_CIGARETTE_COUNT,
         ENEMY_ITEM_BEER_COUNT,
         ENEMY_ITEM_ADRENALINE_COUNT,
@@ -91,15 +94,18 @@ class AIManager {
 public:
     AIManager();
 
+
+
     void setMagazineType(AIShellTypeState aiShellTypeState, int index);
     void pumpingMagazine();
     void loadMagazine(int count);
     void syncMagazineAndShells(int liveShellLeft, int blankShellLeft);
+    void syncItemCount(std::vector<Item>& myItem, std::vector<Item>& enemyItem);
 
     void saveWeightsToFile();
     void loadWeightsFromFile();
-    void fillShellType();
 
+    void setHitPoint(int objectHitPoint, int subjectHitPoint);
     void setLastAction(Action lastAction);
     void setDropLastShell(ShellType shellType);
 };

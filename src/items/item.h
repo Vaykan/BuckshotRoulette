@@ -16,6 +16,7 @@ protected:
     Player* owner{};
 public:
     std::string getName();
+    ItemType getItemType();
 
     void setOwner(Player& owner);
 

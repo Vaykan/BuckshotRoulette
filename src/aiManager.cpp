@@ -1,8 +1,14 @@
 #include "aiManager.h"
 #include "shotgun.h"
+#include "items/item.h"
+
 
 AIManager::AIManager() {
     magazine.reserve(8);
+}
+
+void AIManager::setHitPoint(int objectHitPoint, int subjectHitPoint) {
+
 }
 
 void AIManager::saveWeightsToFile() {
@@ -17,11 +23,6 @@ void AIManager::setLastAction(Action lastAction) {}
 
 void AIManager::setDropLastShell(ShellType shellType) {}
 
-void AIManager::fillShellType() {
-    for (int i = 0; i < 8; ++i) {
-        neuralNetwork.neuronArray[0][static_cast<int>(InputNeurons::SHELL_TYPE) + i * 2] = UNKNOWN;
-    }
-}
 
 void AIManager::setMagazineType(AIShellTypeState aiShellTypeState, int index) {
     float value;
@@ -67,9 +68,9 @@ void AIManager::setShellHave() {
     for (int i = 0; i < 8; ++i) {
         neuralNetwork.neuronArray[0][static_cast<int>(InputNeurons::SHELL_HAVE) + i * 2] = IS_EMPTY;
     }
-    auto value = magazine.size();
-    if (value)
-        neuralNetwork.neuronArray[0][static_cast<int>(InputNeurons::SHELL_HAVE) + value - 1 * 2] = IS_FILLED;
+    auto index = magazine.size();
+    if (index)
+        neuralNetwork.neuronArray[0][static_cast<int>(InputNeurons::SHELL_HAVE) + index - 1 * 2] = IS_FILLED;
 }
 
 void AIManager::setShellLeft(int liveShellLeft, int blankShellLeft) {
@@ -83,4 +84,27 @@ void AIManager::setShellLeft(int liveShellLeft, int blankShellLeft) {
 
 void AIManager::pumpingMagazine() {
     magazine.pop_back();
+}
+
+void AIManager::syncItemCount(std::vector<Item>& myItem, std::vector<Item>& enemyItem) {
+    std::array<int, 9> myItemCounts{};
+    if (!myItem.empty()) {
+        for (auto& i: myItem) {
+            myItemCounts[static_cast<int>(i.getItemType()) - 1] += 1;
+        }
+    }
+    std::array<int, 9> enemyItemCounts{};
+    if (!enemyItem.empty()) {
+        for (auto& i: enemyItem) {
+            enemyItemCounts[static_cast<int>(i.getItemType()) - 1] += 1;
+        }
+    }
+    for (int i = 0; i < myItemCounts.size(); ++i) {
+        float value = static_cast<float>(myItemCounts[i]) / 4 - 1;
+        neuralNetwork.neuronArray[0][static_cast<int>(InputNeurons::MY_ITEM_PILL_COUNT) + i] = value;
+    }
+    for (int i = 0; i < enemyItemCounts.size(); ++i) {
+        float value = static_cast<float>(enemyItemCounts[i]) / 4 - 1;
+        neuralNetwork.neuronArray[0][static_cast<int>(InputNeurons::MY_ITEM_PILL_COUNT) + i] = value;
+    }
 }
