@@ -28,7 +28,7 @@ class MyFrame : public wxFrame {
     bool isDebugButtonActivated = false;
 #endif
 public:
-    MyFrame(Session& session);
+    explicit MyFrame(Session& session);
 
     wxTextCtrl* getTextCtrl();
 

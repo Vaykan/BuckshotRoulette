@@ -86,17 +86,17 @@ void AIManager::pumpingMagazine() {
     magazine.pop_back();
 }
 
-void AIManager::syncItemCount(std::vector<Item>& myItem, std::vector<Item>& enemyItem) {
+void AIManager::syncItemCount(std::vector<Item*>& myItem, std::vector<Item*>& enemyItem) {
     std::array<int, 9> myItemCounts{};
     if (!myItem.empty()) {
         for (auto& i: myItem) {
-            myItemCounts[static_cast<int>(i.getItemType()) - 1] += 1;
+            myItemCounts[static_cast<int>(i->getItemType()) - 1] += 1;
         }
     }
     std::array<int, 9> enemyItemCounts{};
     if (!enemyItem.empty()) {
         for (auto& i: enemyItem) {
-            enemyItemCounts[static_cast<int>(i.getItemType()) - 1] += 1;
+            enemyItemCounts[static_cast<int>(i->getItemType()) - 1] += 1;
         }
     }
     for (int i = 0; i < myItemCounts.size(); ++i) {
@@ -107,4 +107,13 @@ void AIManager::syncItemCount(std::vector<Item>& myItem, std::vector<Item>& enem
         float value = static_cast<float>(enemyItemCounts[i]) / 4 - 1;
         neuralNetwork.neuronArray[0][static_cast<int>(InputNeurons::MY_ITEM_PILL_COUNT) + i] = value;
     }
+}
+
+void AIManager::syncHitPoints(int myHitPoints, int enemyHitPoints) {
+    for (int i = 0; i < 4; ++i) {
+        neuralNetwork.neuronArray[0][static_cast<int>(InputNeurons::MY_HIT_POINT_HAVE_1) + i] = IS_EMPTY;
+        neuralNetwork.neuronArray[0][static_cast<int>(InputNeurons::ENEMY_HIT_POINT_HAVE_1) + i] = IS_EMPTY;
+    }
+    neuralNetwork.neuronArray[0][static_cast<int>(InputNeurons::MY_HIT_POINT_HAVE_1) + myHitPoints - 1] = IS_FILLED;
+    neuralNetwork.neuronArray[0][static_cast<int>(InputNeurons::ENEMY_HIT_POINT_HAVE_1) + enemyHitPoints - 1] = IS_FILLED;
 }

@@ -117,7 +117,9 @@ void Session::checkTurn() {
             else
                 blankShellLeft += 1;
         }
+        aiManager->syncHitPoints(subject->getHitPoint(),subject->getHitPoint());
         aiManager->syncMagazineAndShells(liveShellLeft, blankShellLeft);
+        aiManager->syncItemCount(subject->getItem(), object->getItem());
     }
 }
 

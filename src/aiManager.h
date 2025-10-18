@@ -75,8 +75,15 @@ class AIManager {
         ENEMY_ITEM_SAW_COUNT,
         ENEMY_ITEM_PHONE_COUNT,
 
-        MY_HIT_POINTS,
-        ENEMY_HIT_POINTS,
+        MY_HIT_POINT_HAVE_1,
+        MY_HIT_POINT_HAVE_2,
+        MY_HIT_POINT_HAVE_3,
+        MY_HIT_POINT_HAVE_4,
+        ENEMY_HIT_POINT_HAVE_1,
+        ENEMY_HIT_POINT_HAVE_2,
+        ENEMY_HIT_POINT_HAVE_3,
+        ENEMY_HIT_POINT_HAVE_4,
+
         ENEMY_IS_HANDCUFFED
 
     };
@@ -99,8 +106,10 @@ public:
     void setMagazineType(AIShellTypeState aiShellTypeState, int index);
     void pumpingMagazine();
     void loadMagazine(int count);
+
+    void syncHitPoints(int myHitPoints, int enemyHitPoints);
     void syncMagazineAndShells(int liveShellLeft, int blankShellLeft);
-    void syncItemCount(std::vector<Item>& myItem, std::vector<Item>& enemyItem);
+    void syncItemCount(std::vector<Item*>& myItem, std::vector<Item*>& enemyItem);
 
     void saveWeightsToFile();
     void loadWeightsFromFile();
