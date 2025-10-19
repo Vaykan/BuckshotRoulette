@@ -7,11 +7,11 @@
 
 class NeuralNetwork {
 private:
-    int score;
+    int score = 0;
     std::string fileName;
-    std::vector<double> weightArray;
+    std::vector<float> weightArray;
 public:
-    std::vector<std::vector<double>> neuronArray;
+    std::vector<std::vector<float>> neuronArray;
 
     void createNeuronArray(std::vector<int> neuroneCount);
     void createWeightArray();
@@ -21,7 +21,7 @@ public:
     void saveWeightsToFile();
     void loadWeightsFromFile();
 
-    const std::vector<double>* getLastNeuronArray();
+    const std::vector<float>* getLastNeuronArray();
 
     void setScore(int score);
     void changeScore(int delta);

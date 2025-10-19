@@ -67,7 +67,7 @@ public:
     void setShotgun(Shotgun& shotgun);
     Shotgun* getShotgun();
 
-    void setAIManager(AIManager& neuralNetwork);
+    void setAIManager(AIManager& aiManager);
     AIManager& getAIManager();
 
     void addSkipTurn(std::string reason);

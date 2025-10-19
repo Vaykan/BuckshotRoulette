@@ -84,11 +84,12 @@ class AIManager {
         ENEMY_HIT_POINT_HAVE_3,
         ENEMY_HIT_POINT_HAVE_4,
 
-        ENEMY_IS_HANDCUFFED
+        ENEMY_IS_HANDCUFFED,
+        SIZE
 
     };
     NeuralNetwork neuralNetwork;
-    std::vector<float> magazine;
+    std::vector<float> magazine{};
     static constexpr float LIVE = 1;
     static constexpr float BLANK = -1;
     static constexpr float UNKNOWN = 0;

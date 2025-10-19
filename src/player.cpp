@@ -151,8 +151,8 @@ bool Player::getIsAI() {
     return isAI;
 }
 
-void Player::setAIManager(AIManager& neuralNetwork) {
-    this->aiManager = &neuralNetwork;
+void Player::setAIManager(AIManager& aiManager) {
+    this->aiManager = &aiManager;
 }
 
 AIManager& Player::getAIManager() {

@@ -20,7 +20,7 @@ void NeuralNetwork::createWeightArray() {
 }
 
 void NeuralNetwork::changeWeights(double (* randomFunction)()) {
-    for (double& i: weightArray) {
+    for (auto& i: weightArray) {
         i += randomFunction();
     }
 }
@@ -58,7 +58,7 @@ void NeuralNetwork::loadWeightsFromFile() {
     file.close();
 }
 
-const std::vector<double>* NeuralNetwork::getLastNeuronArray() {
+const std::vector<float>* NeuralNetwork::getLastNeuronArray() {
     return &neuronArray[neuronArray.size() - 1];
 }
 

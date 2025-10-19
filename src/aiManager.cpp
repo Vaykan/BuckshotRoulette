@@ -5,6 +5,7 @@
 
 AIManager::AIManager() {
     magazine.reserve(8);
+    neuralNetwork.createNeuronArray({static_cast<int>(InputNeurons::SIZE)});
 }
 
 void AIManager::setHitPoint(int objectHitPoint, int subjectHitPoint) {
