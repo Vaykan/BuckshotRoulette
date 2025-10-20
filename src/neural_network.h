@@ -15,7 +15,7 @@ public:
 
     void createNeuronArray(std::vector<int> neuroneCount);
     void createWeightArray();
-    void changeWeights(double (* randomFunction)());
+    void changeWeights(float (* randomFunction)());
     void calculateNeuronValue();
     void selectFileName(std::string fileName);
     void saveWeightsToFile();

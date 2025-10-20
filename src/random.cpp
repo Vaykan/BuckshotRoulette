@@ -7,6 +7,7 @@ std::random_device rd;
 std::mt19937 gen(rd());
 std::uniform_int_distribution<> dist(lastMin, lastMax);
 std::uniform_int_distribution<> distBit(0, 1);
+std::uniform_real_distribution<> distWeight(-1, 1);
 
 int rGetNum(int min, int max) {
     dist = std::uniform_int_distribution<>(min, max);
@@ -15,4 +16,8 @@ int rGetNum(int min, int max) {
 
 int rGetRandBit() {
     return distBit(gen);
+}
+
+float rGetRandWeight() {
+    return static_cast<float>(distWeight(gen));
 }

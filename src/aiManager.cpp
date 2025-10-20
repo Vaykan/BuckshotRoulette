@@ -6,7 +6,9 @@
 
 AIManager::AIManager() {
     magazine.reserve(8);
-    neuralNetwork.createNeuronArray({static_cast<int>(InputNeurons::SIZE), static_cast<int>(OutputNeuron::SIZE)});
+    neuralNetwork.createNeuronArray({static_cast<int>(InputNeurons::SIZE), 32, 64, static_cast<int>(OutputNeuron::SIZE)});
+    neuralNetwork.createWeightArray();
+    neuralNetwork.changeWeights(rGetRandWeight);
 }
 
 void AIManager::setHitPoint(int objectHitPoint, int subjectHitPoint) {
@@ -124,6 +126,8 @@ wxButton* AIManager::getAIActionButton(MyFrame& myFrame, Player& subject, const 
     std::vector<std::vector<float>>& neuronArray = neuralNetwork.neuronArray;
     const size_t outputNeuronIndex = neuronArray.size() - 1;
 
+    neuralNetwork.calculateNeuronValue();
+
     std::array<size_t, static_cast<int>(OutputNeuron::SIZE)> sortedIndex;
     std::iota(sortedIndex.begin(), sortedIndex.end(), 0);
     std::stable_sort(sortedIndex.begin(), sortedIndex.end(), [&neuronArray, &outputNeuronIndex](size_t i1, size_t i2) {
@@ -140,12 +144,12 @@ wxButton* AIManager::getAIActionButton(MyFrame& myFrame, Player& subject, const 
         } else if (i >= static_cast<int>(OutputNeuron::SUBJECT_ITEM_SLOT) &&
                    i <= static_cast<int>(OutputNeuron::SUBJECT_ITEM_SLOT_8)) {
             if (!myItem.empty())
-                if (i <= myItem.size())
+                if (static_cast<int>(OutputNeuron::SUBJECT_ITEM_SLOT) - i <= myItem.size())
                     return myFrame.subjectItemSlot[static_cast<int>(OutputNeuron::SUBJECT_ITEM_SLOT) - i];
         } else if (i >= static_cast<int>(OutputNeuron::OBJECT_ITEM_SLOT) &&
                    i <= static_cast<int>(OutputNeuron::OBJECT_ITEM_SLOT_8)) {
             if (!enemyItem.empty() && subject.getIsAdrenalineActive())
-                if (i <= enemyItem.size())
+                if (static_cast<int>(OutputNeuron::OBJECT_ITEM_SLOT) - i <= enemyItem.size())
                     return myFrame.objectItemSlot[static_cast<int>(OutputNeuron::OBJECT_ITEM_SLOT) - i];
         }
     }

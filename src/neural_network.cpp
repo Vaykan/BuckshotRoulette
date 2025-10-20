@@ -19,7 +19,7 @@ void NeuralNetwork::createWeightArray() {
     weightArray.resize(count);
 }
 
-void NeuralNetwork::changeWeights(double (* randomFunction)()) {
+void NeuralNetwork::changeWeights(float (* randomFunction)()) {
     for (auto& i: weightArray) {
         i += randomFunction();
     }
