@@ -9,6 +9,16 @@ class MyFrame : public wxFrame {
     static constexpr int BUTTON_ITEM = 8;
     Session* session;
 
+    void updateHpStaticText();
+    void updateNameStaticText();
+    void updateAllButtonText();
+
+#ifndef NDEBUG
+    bool isDebugButtonActivated = false;
+#endif
+public:
+    explicit MyFrame(Session& session);
+
     std::array<wxButton*, BUTTON_ITEM> objectItemSlot = {};
     std::array<wxButton*, BUTTON_ITEM> subjectItemSlot = {};
     wxButton* shootButton = nullptr;
@@ -19,16 +29,6 @@ class MyFrame : public wxFrame {
     wxStaticText* objectNameText = nullptr;
     wxStaticText* subjectNameText = nullptr;
     wxButton* debugButton = nullptr;
-
-    void updateHpStaticText();
-    void updateNameStaticText();
-    void updateAllButtonText();
-
-#ifndef NDEBUG
-    bool isDebugButtonActivated = false;
-#endif
-public:
-    explicit MyFrame(Session& session);
 
     wxTextCtrl* getTextCtrl();
 

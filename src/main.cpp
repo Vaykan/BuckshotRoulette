@@ -24,5 +24,6 @@ bool Main::OnInit() {
     session->getPlayer().setMyFrame(*myFrame);
     session->displayShotgunMagazineContents();
     myFrame->Show(true);
+    session->checkTurn();
     return true;
 }

@@ -11,17 +11,37 @@ enum class AIShellTypeState {
     EMPTY
 };
 
-enum class AIHitPoint {
-    ONE,
-    TWO,
-    THREE,
-    FOUR
+enum class OutputNeuron {
+    SHOOT_BUTTON,
+    SHOOT_YOURSELF_BUTTON,
+
+    OBJECT_ITEM_SLOT,
+    OBJECT_ITEM_SLOT_2,
+    OBJECT_ITEM_SLOT_3,
+    OBJECT_ITEM_SLOT_4,
+    OBJECT_ITEM_SLOT_5,
+    OBJECT_ITEM_SLOT_6,
+    OBJECT_ITEM_SLOT_7,
+    OBJECT_ITEM_SLOT_8,
+
+    SUBJECT_ITEM_SLOT,
+    SUBJECT_ITEM_SLOT_2,
+    SUBJECT_ITEM_SLOT_3,
+    SUBJECT_ITEM_SLOT_4,
+    SUBJECT_ITEM_SLOT_5,
+    SUBJECT_ITEM_SLOT_6,
+    SUBJECT_ITEM_SLOT_7,
+    SUBJECT_ITEM_SLOT_8,
+
+    SIZE
 };
 
 enum class AIL;
 
 class NeuralNetwork;
 class Item;
+class MyFrame;
+class Player;
 
 class AIManager {
     enum class InputNeurons {
@@ -85,8 +105,8 @@ class AIManager {
         ENEMY_HIT_POINT_HAVE_4,
 
         ENEMY_IS_HANDCUFFED,
-        SIZE
 
+        SIZE
     };
     NeuralNetwork neuralNetwork;
     std::vector<float> magazine{};
@@ -102,7 +122,7 @@ class AIManager {
 public:
     AIManager();
 
-
+    wxButton* getAIActionButton(MyFrame& myFrame, Player& subject, const std::vector<Item*>& myItem, const std::vector<Item*>& enemyItem);
 
     void setMagazineType(AIShellTypeState aiShellTypeState, int index);
     void pumpingMagazine();
@@ -110,7 +130,8 @@ public:
 
     void syncHitPoints(int myHitPoints, int enemyHitPoints);
     void syncMagazineAndShells(int liveShellLeft, int blankShellLeft);
-    void syncItemCount(std::vector<Item*>& myItem, std::vector<Item*>& enemyItem);
+    void syncItemCount(const std::vector<Item*>& myItem, const std::vector<Item*>& enemyItem);
+    void syncEnemyHandcuffed(bool isHandcuffed);
 
     void saveWeightsToFile();
     void loadWeightsFromFile();

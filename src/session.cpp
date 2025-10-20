@@ -120,6 +120,13 @@ void Session::checkTurn() {
         aiManager->syncHitPoints(subject->getHitPoint(),subject->getHitPoint());
         aiManager->syncMagazineAndShells(liveShellLeft, blankShellLeft);
         aiManager->syncItemCount(subject->getItem(), object->getItem());
+        aiManager->syncEnemyHandcuffed(object->isHandcuffed());
+
+        wxButton* actionAIButton;
+        actionAIButton = aiManager->getAIActionButton(*myFrame, *subject, subject->getItem(), object->getItem());
+        wxCommandEvent event(wxEVT_BUTTON, actionAIButton->GetId());
+        event.SetEventObject(actionAIButton);
+        wxPostEvent(actionAIButton, event);
     }
 }
 
