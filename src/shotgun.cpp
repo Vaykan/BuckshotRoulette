@@ -1,18 +1,27 @@
 #include "shotgun.h"
 #include "session.h"
 
-void Shotgun::shoot(Player* target) {
-    session->getMyFrame()->getTextCtrl()->AppendText("\n\n");
+void Shotgun::shoot(Player* target, Player* shooter) {
+    session->getMyFrame()->getTextCtrl()->AppendText("\n");
+    if (target == shooter) {
+        session->getMyFrame()->getTextCtrl()->AppendText(shooter->getName());
+        session->getMyFrame()->getTextCtrl()->AppendText(" Shoot Yourself");
+    } else {
+        session->getMyFrame()->getTextCtrl()->AppendText(shooter->getName());
+        session->getMyFrame()->getTextCtrl()->AppendText(" Shoots at ");
+        session->getMyFrame()->getTextCtrl()->AppendText(target->getName());
+    }
+
     if (magazine.back() == LIVE) {
         previousShellType = LIVE;
-        session->getMyFrame()->getTextCtrl()->AppendText("SHOT!\n");
+        session->getMyFrame()->getTextCtrl()->AppendText("\nSHOT!");
         if (doubleDamage)
             target->changeHitPoint(-2);
         else
             target->changeHitPoint(-1);
     } else {
         previousShellType = BLANK;
-        session->getMyFrame()->getTextCtrl()->AppendText("CLICK!\n");
+        session->getMyFrame()->getTextCtrl()->AppendText("\nCLICK!");
     }
     pumping();
     doubleDamage = false;
@@ -20,11 +29,11 @@ void Shotgun::shoot(Player* target) {
 
 void Shotgun::pumping() {
     if (magazine.back() == LIVE)
-        session->getMyFrame()->getTextCtrl()->AppendText("LIVE shell ejected\n");
+        session->getMyFrame()->getTextCtrl()->AppendText("\nLIVE shell ejected");
     else
-        session->getMyFrame()->getTextCtrl()->AppendText("BLANK shell ejected\n");
+        session->getMyFrame()->getTextCtrl()->AppendText("\nBLANK shell ejected");
     magazine.pop_back();
-    session->getMyFrame()->getTextCtrl()->AppendText("\n\n");
+    session->getMyFrame()->getTextCtrl()->AppendText("");
 }
 
 void Shotgun::loading(int count) {
@@ -54,11 +63,11 @@ void Shotgun::displayMagazineContents() {
         else
             blank++;
     }
-    session->getMyFrame()->getTextCtrl()->AppendText("Shotgun loaded:\n");
+    session->getMyFrame()->getTextCtrl()->AppendText("\n\nShotgun loaded:\n");
     session->getMyFrame()->getTextCtrl()->AppendText(std::to_string(live));
     session->getMyFrame()->getTextCtrl()->AppendText(" Live\n");
     session->getMyFrame()->getTextCtrl()->AppendText(std::to_string(blank));
-    session->getMyFrame()->getTextCtrl()->AppendText(" Blank\n\n");
+    session->getMyFrame()->getTextCtrl()->AppendText(" Blank\n");
 }
 
 ShellType& Shotgun::getBackShell() {
