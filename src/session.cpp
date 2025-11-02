@@ -82,10 +82,10 @@ void Session::displayShotgunMagazineContents() {
 
 void Session::checkTurn() {
     if (!player.getHitPoint()) {
-        myFrame->getTextCtrl()->AppendText("Player dead");
+        myFrame->getTextCtrl()->AppendText("\nPlayer dead");
         return;
     } else if (!dealer.getHitPoint()) {
-        myFrame->getTextCtrl()->AppendText("Dealer dead");
+        myFrame->getTextCtrl()->AppendText("\nDealer dead");
         return;
     }
     if (shotgun.isEmpty()) {
@@ -93,6 +93,9 @@ void Session::checkTurn() {
         object = &dealer;
         shotgun.loading(rGetNum(2, 8));
         shotgun.displayMagazineContents();
+        myFrame->getTextCtrl()->AppendText("\n------------------------------------------------------");
+        myFrame->getTextCtrl()->AppendText(subject->getName());
+        myFrame->getTextCtrl()->AppendText(" Turn\n------------------------------------------------------");
         int randomCount = rGetNum(1, 4);
         player.addRandomItems(randomCount);
         dealer.addRandomItems(randomCount);
@@ -103,6 +106,9 @@ void Session::checkTurn() {
         } else {
             object->setIsHandcuffed(false);
             swapTurn();
+            myFrame->getTextCtrl()->AppendText("\n------------------------------------------------------");
+            myFrame->getTextCtrl()->AppendText(subject->getName());
+            myFrame->getTextCtrl()->AppendText(" Turn\n------------------------------------------------------");
         }
     }
     lastAction = NODATA;
@@ -135,11 +141,11 @@ void Session::swapTurn() {
 }
 
 void Session::shootTarget() {
-    shotgun.shoot(object);
+    shotgun.shoot(object, subject);
 }
 
 void Session::shootYourself() {
-    shotgun.shoot(subject);
+    shotgun.shoot(subject, subject);
 }
 
 void Session::setLastAction(Action lastAction) {

@@ -68,7 +68,7 @@ void Player::useItem(int index) {
         item[index]->use();
         item.erase(item.begin() + index);
     } else {
-        myFrame->getTextCtrl()->AppendText("Cannot be used\n\n");
+        myFrame->getTextCtrl()->AppendText("\nCannot be used");
     }
 }
 

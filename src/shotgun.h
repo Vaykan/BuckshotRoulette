@@ -24,7 +24,7 @@ public:
 
     void setDoubleDamage(bool doubleDamage);
 
-    void shoot(Player* target);
+    void shoot(Player* target, Player* shooter);
     void pumping();
     void loading(int count);
 
