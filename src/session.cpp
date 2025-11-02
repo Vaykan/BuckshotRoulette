@@ -4,7 +4,6 @@ void Session::config() {
     dealer.setName("Dealer");
     dealer.setTarget(player);
     dealer.setShotgun(shotgun);
-    dealer.setMaxHitPoint(4);
     dealer.setItemStorage({new Pill(), new Cigarette(), new Beer(), new Magnifier(), new Handcuffs(),
                            new Inverter(), new Saw(), new Phone(), new Adrenaline()});
     for (auto& i: dealer.getItemStorage()) {
@@ -15,7 +14,6 @@ void Session::config() {
     player.setName("Player");
     player.setTarget(dealer);
     player.setShotgun(shotgun);
-    player.setMaxHitPoint(4);
     player.setItemStorage({new Pill(), new Cigarette(), new Beer(), new Magnifier(), new Handcuffs(),
                            new Inverter(), new Saw(), new Phone(), new Adrenaline()});
     for (auto& i: player.getItemStorage()) {
@@ -27,7 +25,9 @@ void Session::config() {
     subject = &player;
 
     int randomCount = rGetNum(2, 4);
+    dealer.setMaxHitPoint(randomCount);
     dealer.setHitPoint(randomCount);
+    player.setMaxHitPoint(randomCount);
     player.setHitPoint(randomCount);
 
     randomCount = rGetNum(1, 4);
