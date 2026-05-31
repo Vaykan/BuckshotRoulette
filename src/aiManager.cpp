@@ -162,3 +162,15 @@ void AIManager::syncEnemyHandcuffed(bool isHandcuffed) {
     else
         neuralNetwork.neuronArray[0][static_cast<int>(InputNeurons::ENEMY_IS_HANDCUFFED)] = IS_EMPTY;
 }
+
+int AIManager::getScore() {
+    return score;
+}
+
+void AIManager::changeScore(int delta) {
+    this->score += delta;
+}
+
+void AIManager::resetScore() {
+    score = 0;
+}

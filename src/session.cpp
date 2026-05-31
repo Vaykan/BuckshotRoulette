@@ -81,13 +81,22 @@ void Session::displayShotgunMagazineContents() {
 }
 
 void Session::checkTurn() {
+    bool gameOver = false;
     if (!player.getHitPoint()) {
         myFrame->getTextCtrl()->AppendText("\nPlayer dead");
-        return;
-    } else if (!dealer.getHitPoint()) {
-        myFrame->getTextCtrl()->AppendText("\nDealer dead");
-        return;
+        gameOver = true;
+        if(player.getIsAI())
+            player.getAIManager().changeScore(-100);
     }
+    if (!dealer.getHitPoint()) {
+        myFrame->getTextCtrl()->AppendText("\nDealer dead");
+        gameOver = true;
+        if(dealer.getIsAI())
+            dealer.getAIManager().changeScore(-100);
+    }
+    if (gameOver)
+        return;
+
     if (shotgun.isEmpty()) {
         subject = &player;
         object = &dealer;

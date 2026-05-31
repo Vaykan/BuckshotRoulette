@@ -116,6 +116,8 @@ class AIManager {
     static constexpr float IS_EMPTY = -1;
     static constexpr float IS_FILLED = 1;
 
+    int score = 0;
+
     void setShellType();
     void setShellHave();
     void setShellLeft(int liveShellLeft, int blankShellLeft);
@@ -139,6 +141,10 @@ public:
     void setHitPoint(int objectHitPoint, int subjectHitPoint);
     void setLastAction(Action lastAction);
     void setDropLastShell(ShellType shellType);
+
+    int getScore();
+    void changeScore(int delta);
+    void resetScore();
 };
 
 #endif

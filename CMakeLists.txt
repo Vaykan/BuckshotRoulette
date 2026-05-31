@@ -15,5 +15,8 @@ add_executable(Buckshot_Roulette WIN32
 target_link_libraries(Buckshot_Roulette ${wxWidgets_LIBRARIES})
 target_precompile_headers(Buckshot_Roulette PRIVATE src/pch.h)
 
-set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -static")
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -static -flto -O3 -DNDEBUG")
 set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE "${CMAKE_COMMAND} -E time")
+
+
+#max hp in ai type

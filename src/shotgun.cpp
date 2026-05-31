@@ -14,6 +14,13 @@ void Shotgun::shoot(Player* target, Player* shooter) {
         session->getMyFrame()->getTextCtrl()->AppendText(target->getName());
     }
 
+    if (shooter->getIsAI() && magazine.back() == LIVE) {
+        int delta = doubleDamage ? 2 : 1;
+        if (shooter == target)
+            delta = -delta;
+        shooter->getAIManager().changeScore(delta);
+    }
+
     if (magazine.back() == LIVE) {
         previousShellType = LIVE;
         session->getMyFrame()->getTextCtrl()->AppendText("\nSHOT!");

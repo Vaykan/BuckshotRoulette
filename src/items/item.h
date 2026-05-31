@@ -5,6 +5,7 @@
 #include "../player.h"
 #include "../random.h"
 #include "../myFrame.h"
+#include "../aiManager.h"
 
 class Item {
 protected:
