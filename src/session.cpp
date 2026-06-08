@@ -1,6 +1,7 @@
 #include "session.h"
 #include "aiManager.h"
 #include "myFrame.h"
+#include "trainingSession.h"
 
 #include "items/item.h"
 #include "items/pill.h"
@@ -94,9 +95,14 @@ void Session::checkTurn() {
         if(dealer.getIsAI())
             dealer.getAIManager().changeScore(-100);
     }
-    if (gameOver)
-        return;
-
+    if (gameOver) {
+        if (TrainingSession::getIterationsLeft() > 0) {
+            TrainingSession::decrementIterationsLeft();
+            TrainingSession::resetGameSession(*this);
+        } else {
+            return;
+        }
+    }
     if (shotgun.isEmpty()) {
         subject = &player;
         object = &dealer;
@@ -159,4 +165,8 @@ void Session::shootYourself() {
 
 void Session::setLastAction(Action lastAction) {
     this->lastAction = lastAction;
+}
+
+Shotgun& Session::getShotgun() {
+    return shotgun;
 }

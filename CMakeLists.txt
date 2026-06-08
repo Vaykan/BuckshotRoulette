@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.28)
 project(Buckshot_Roulette)
 
+add_compile_definitions(NDEBUG)
+
 set(CMAKE_CXX_STANDARD 17)
 
 find_package(wxWidgets REQUIRED gl core base OPTIONAL_COMPONENTS net)

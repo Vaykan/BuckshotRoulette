@@ -1,6 +1,7 @@
 #include "myFrame.h"
 #include "session.h"
 #include "aiManager.h"
+#include "trainingSession.h"
 
 class Main : public wxApp {
 public:
@@ -24,6 +25,7 @@ bool Main::OnInit() {
     session->getPlayer().setMyFrame(*myFrame);
     session->displayShotgunMagazineContents();
     myFrame->Show(true);
+    TrainingSession::setIterationsLeft(1000);
     session->checkTurn();
     return true;
 }

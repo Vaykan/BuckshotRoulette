@@ -122,6 +122,7 @@ void AIManager::syncHitPoints(int myHitPoints, int enemyHitPoints) {
     neuralNetwork.neuronArray[0][static_cast<int>(InputNeurons::ENEMY_HIT_POINT_HAVE_1) + enemyHitPoints - 1] = IS_FILLED;
 }
 
+//TODO: Have bug down here
 wxButton* AIManager::getAIActionButton(MyFrame& myFrame, Player& subject, const std::vector<Item*>& myItem, const std::vector<Item*>& enemyItem) {
     std::vector<std::vector<float>>& neuronArray = neuralNetwork.neuronArray;
     const size_t outputNeuronIndex = neuronArray.size() - 1;

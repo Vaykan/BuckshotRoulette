@@ -38,6 +38,8 @@ public:
     void setMyFrame(MyFrame& myFrame);
     MyFrame* getMyFrame();
 
+    Shotgun& getShotgun();
+
     void displayShotgunMagazineContents();
 
     void shootTarget();
